@@ -1,7 +1,9 @@
+import { FirebaseAuthConsumer } from '@react-firebase/auth'
 import React, { useState } from 'react'
+import { Redirect } from 'react-router'
+import CRGoogleLoginButton from '../../generics/CRGoogleLoginButton/CRGoogleLoginButton'
 import { CRLogo } from '../../generics/CRLogo/CRLogo'
 import './Login.scss'
-import { CRButton } from '../../generics'
 
 export function Login() {
   const [id, setId] = useState('')
@@ -20,9 +22,7 @@ export function Login() {
           habitasse.
         </p>
 
-        <CRButton id={`${id}ContentButton`} className="Initial__button" onClick={() => {}}>
-          Entrar com o google
-        </CRButton>
+        <CRGoogleLoginButton id={`${id}ContentButton`} className="Initial__button" />
       </>
     )
   }
@@ -30,11 +30,20 @@ export function Login() {
   load()
 
   return (
-    <div className="Initial">
-      <div className="Initial__content">
-        <CRLogo className="Initial__Logo" id={id} />
-        {renderEverything()}
-      </div>
-    </div>
+    <FirebaseAuthConsumer>
+      {({ isSignedIn }) => {
+        if (isSignedIn) {
+          return <Redirect to="/" />
+        }
+        return (
+          <div className="Initial">
+            <div className="Initial__content">
+              <CRLogo className="Initial__Logo" id={id} />
+              {renderEverything()}
+            </div>
+          </div>
+        )
+      }}
+    </FirebaseAuthConsumer>
   )
 }
