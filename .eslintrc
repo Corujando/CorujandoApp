@@ -1,0 +1,97 @@
+{
+  "plugins": ["prettier", "@typescript-eslint"],
+  "extends": ["airbnb-typescript", "react-app", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
+  "rules": {
+    "@typescript-eslint/semi": ["error", "never"],
+    "@typescript-eslint/dot-notation": "off",
+    "@typescript-eslint/keyword-spacing": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "keyword-spacing": "warn",
+    "lines-between-class-members": "error",
+    "object-curly-spacing": ["warn", "always"],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": [
+      "off",
+      {
+        "ignoreRestArgs": true
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 100,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreComments": true
+      }
+    ],
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "react/jsx-key": "error",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.test.jsx",
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "src/tests/**/*"
+        ]
+      }
+    ],
+    "react/jsx-closing-bracket-location": [
+      1,
+      { "selfClosing": "line-aligned", "nonEmpty": "after-props" }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-boolean-value": "off",
+    "react/prop-types": "off",
+    "react/no-unescaped-entities": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/destructuring-assignment": "off",
+    "prettier/prettier": "error",
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "comma-dangle": ["error", "always-multiline"],
+    "no-cond-assign": ["error", "always"],
+    "no-extra-boolean-cast": 0,
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ]
+  }
+}
