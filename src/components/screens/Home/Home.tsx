@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import { FirebaseAuthConsumer } from '@react-firebase/auth'
-import CRSignOutButton from '../../generics/CRSignOutButton'
+import CRSignOutButton from '../../generics/CRSignOutButton/CRSignOutButton'
 
 export const Home = () => {
   const location = useLocation()

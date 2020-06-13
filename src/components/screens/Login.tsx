@@ -1,5 +1,5 @@
 import React from 'react'
-import CRGoogleLoginButton from '../generics/CRGoogleLoginButton'
+import CRGoogleLoginButton from '../generics/CRGoogleLoginButton/CRGoogleLoginButton'
 import { Redirect } from 'react-router-dom'
 import { FirebaseAuthConsumer } from '@react-firebase/auth'
 

@@ -7,7 +7,7 @@ import * as firebase from 'firebase/app'
 import firebaseConfig from './config/FirebaseConfig'
 import Login from './components/screens/Login'
 import './App.scss'
-import { Home } from './components/screens/app/Home'
+import { Home } from './components/screens/Home/Home'
 
 function App() {
   return (
