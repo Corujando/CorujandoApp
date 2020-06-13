@@ -1,9 +1,9 @@
+@import '../../../App.scss';
+
 .Logo {
   &__text {
-    font-family: 'Montserrat Alternates', sans-serif;
-    color: white;
+    @extend .initial-text;
     font-size: 28px;
-    margin-top: 5px;
     font-weight: bold;
   }
 }
