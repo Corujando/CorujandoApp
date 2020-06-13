@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.scss'
-import { Loading } from './components/screens/Loading/Loading'
+import { Login } from './components/screens/Login/Login'
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           },
         }}
       /> */}
-      <Loading />
+      <Login />
     </div>
   )
 }

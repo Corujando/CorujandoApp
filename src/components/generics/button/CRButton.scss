@@ -1,0 +1,16 @@
+@import '../../../App.scss';
+
+.CRButton {
+  width: 100%;
+  position: relative;
+  &__button {
+    @extend .initial-text;
+    background: none;
+    outline: none;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 15px 20px;
+    font-size: 20px;
+    width: 100%;
+  }
+}
