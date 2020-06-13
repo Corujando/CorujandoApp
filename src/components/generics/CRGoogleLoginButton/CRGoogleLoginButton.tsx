@@ -1,11 +1,21 @@
 import React from 'react'
 import firebase from 'firebase'
+import { CRButton } from '../button/CRButton'
 
-export default function CRGoogleLoginButton() {
+interface CRGoogleLoginButtonProps {
+  id?: string
+  className?: string
+}
+
+export default function CRGoogleLoginButton({ id, className }: CRGoogleLoginButtonProps) {
   const signInWithGoogle = () => {
     const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
     firebase.auth().signInWithPopup(googleAuthProvider)
   }
 
-  return <button onClick={signInWithGoogle}>Entrar com o Google</button>
+  return (
+    <CRButton onClick={signInWithGoogle} id={id} className={className}>
+      Entrar com o Google
+    </CRButton>
+  )
 }
