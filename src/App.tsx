@@ -9,7 +9,6 @@ function App() {
 		<div className='App'>
 			<header className='App-header'>
 				<CRMap
-					// center={{ lat: -30.0925399, lng: -51.1758782 }}
 					zoom={12}
 					MarkerComponent={LocalShipping as MarkerComponent}
 					marker={{
