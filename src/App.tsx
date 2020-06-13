@@ -1,6 +1,5 @@
 import { LocalShipping } from '@material-ui/icons'
 import React from 'react'
-import './App.css'
 import './App.scss'
 import { CRMap, MarkerComponent } from './components/generics/CRMap'
 
