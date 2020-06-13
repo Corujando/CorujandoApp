@@ -59,7 +59,6 @@ export function Home() {
           if (!isSignedIn) {
             return isFirebaseObjectLoaded(firebase) ? <Redirect to="/login" /> : null
           } else {
-            console.log(user)
             return renderComponent(user)
           }
         }}
