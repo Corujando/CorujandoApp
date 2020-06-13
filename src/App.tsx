@@ -1,25 +1,25 @@
 import React from 'react'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import Paths from './config/Paths'
+import firebaseConfig from './config/FirebaseConfig'
+import Login from './components/screens/Login'
+import { Home } from './components/screens/Home/Home'
+import { FirebaseAuthProvider } from '@react-firebase/auth'
+import * as firebase from 'firebase/app'
+import 'firebase/auth'
 import './App.scss'
-import { Login } from './components/screens/Login/Login'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header" />
-      {/* <CRMap
-        zoom={12}
-        MarkerComponent={LocalShipping as MarkerComponent}
-        marker={{
-          lat: -30.056,
-          lng: -51.1622,
-          htmlColor: 'black',
-          style: {
-            fontSize: '50',
-          },
-        }}
-      /> */}
-      <Login />
-    </div>
+    <FirebaseAuthProvider {...firebaseConfig} firebase={firebase}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path={Paths.LOGIN} component={Login} />
+          <Route path={Paths.HOME} component={Home} />
+          <Redirect to={Paths.HOME} />
+        </Switch>
+      </BrowserRouter>
+    </FirebaseAuthProvider>
   )
 }
 
