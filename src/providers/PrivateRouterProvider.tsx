@@ -3,7 +3,6 @@ import { Router } from 'react-router'
 import { History, LocationState } from 'history'
 
 export interface PrivateRouterProps {
-
   loginPath: string
 
   homePath: string
@@ -12,12 +11,10 @@ export interface PrivateRouterProps {
 
   browserHistory?: History<LocationState>
 
-  children ?: any
-
+  children?: any
 }
 
 export interface PrivateRouterContextData {
-
   loginPath: string
 
   homePath: string
@@ -25,16 +22,13 @@ export interface PrivateRouterContextData {
   loadingPath: string
 
   browserHistory?: History<LocationState>
-
 }
 
-const PrivateRouterContext = createContext(
-  {
-    loginPath: '',
-    homePath: '',
-    loadingPath: ''
-  } as PrivateRouterContextData
-)
+const PrivateRouterContext = createContext({
+  loginPath: '',
+  homePath: '',
+  loadingPath: '',
+} as PrivateRouterContextData)
 
 const PrivateRouter = (props: PrivateRouterProps): JSX.Element => {
   const getHistory = (): History<LocationState> => {
@@ -49,9 +43,9 @@ const PrivateRouter = (props: PrivateRouterProps): JSX.Element => {
     homePath: props.homePath,
     loginPath: props.loginPath,
     loadingPath: props.loadingPath,
-    browserHistory: props.browserHistory
-  } 
-  
+    browserHistory: props.browserHistory,
+  }
+
   return (
     <Router history={getHistory()}>
       <PrivateRouterContext.Provider value={context}>

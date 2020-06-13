@@ -4,13 +4,11 @@ import 'firebase/auth'
 import 'firebase/analytics'
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)
-firebase.analytics();
+firebase.analytics()
 
 export const firebaseAppAuth = firebaseApp.auth()
 
 export const providers = {
-    googleProvider: new firebase.auth.GoogleAuthProvider(),
-    emailProvider: new firebase.auth.EmailAuthProvider()
+  googleProvider: new firebase.auth.GoogleAuthProvider(),
+  emailProvider: new firebase.auth.EmailAuthProvider(),
 }
-
-

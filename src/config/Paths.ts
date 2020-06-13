@@ -1,7 +1,7 @@
 class Paths {
-    LOGIN: string = '/login'
+  LOGIN: string = '/login'
 
-    HOME: string = '/'
+  HOME: string = '/'
 }
 
 export default new Paths()
