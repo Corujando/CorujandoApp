@@ -1,13 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Paths from './config/Paths'
-import 'firebase/auth'
-import { FirebaseAuthProvider } from '@react-firebase/auth'
-import * as firebase from 'firebase/app'
 import firebaseConfig from './config/FirebaseConfig'
 import Login from './components/screens/Login'
-import './App.scss'
 import { Home } from './components/screens/Home/Home'
+import { FirebaseAuthProvider } from '@react-firebase/auth'
+import * as firebase from 'firebase/app'
+import 'firebase/auth'
+import './App.scss'
 
 function App() {
   return (
