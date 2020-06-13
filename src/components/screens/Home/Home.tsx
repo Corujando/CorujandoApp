@@ -67,9 +67,3 @@ export function Home() {
     </React.Fragment>
   )
 }
-
-/*
-<Switch location={location}>
-                <Route path="/" exact component={CRSignOutButton} />
-              </Switch>
-*/
