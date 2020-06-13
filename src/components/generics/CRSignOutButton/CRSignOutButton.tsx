@@ -1,11 +1,18 @@
 import React from 'react'
-import { WrappedComponentProps } from 'react-with-firebase-auth'
 import firebase from 'firebase'
+import { CRButton } from '../button/CRButton'
 
-export default function CRSignOutButton(props: WrappedComponentProps) {
+interface CRSignOutButtonProps {
+  text?: string,
+  disable?: boolean,
+  className?: string,
+  children?: string
+}
+
+export default function CRSignOutButton(props: CRSignOutButtonProps) {
   const handleGoogleSignOutClick = () => {
     firebase.auth().signOut()
   }
 
-  return <button onClick={handleGoogleSignOutClick}>Sair</button>
+  return <CRButton {...props} onClick={handleGoogleSignOutClick}/>
 }
