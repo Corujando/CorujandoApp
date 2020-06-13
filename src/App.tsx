@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import { LocalShipping } from '@material-ui/icons'
+import React from 'react'
+import './App.scss'
+import { CRMap, MarkerComponent } from './components/generics/CRMap'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className='App'>
+			<header className='App-header'>
+				<CRMap
+					zoom={12}
+					MarkerComponent={LocalShipping as MarkerComponent}
+					marker={{
+						lat: -30.056,
+						lng: -51.1622,
+						htmlColor: 'black',
+						style: {
+							fontSize: '50',
+						},
+					}}
+				/>
+			</header>
+		</div>
+	)
 }
 
-export default App;
+export default App
