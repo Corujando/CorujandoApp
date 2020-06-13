@@ -33,10 +33,11 @@ $side-spacing: 30px;
       background-color: white;
       border-radius: 10px;
       color: #274798;
-      padding-top: 35px;
-      padding-bottom: 35px;
+      padding-top: 30px;
+      padding-bottom: 30px;
     }
     .HomeSignOutButton {
+      padding-top: 0px;
       background-color: unset;
       border: none;
       color: white;
@@ -45,7 +46,7 @@ $side-spacing: 30px;
   }
   .HomeFooter {
     position: absolute;
-    bottom: 40px;
+    bottom: 30px;
     width: 100%;
     display: flex;
     flex-direction: row;

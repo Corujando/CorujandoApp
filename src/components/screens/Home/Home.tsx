@@ -13,7 +13,21 @@ export function Home() {
     return Object.keys(firebase).length !== 0
   }
 
-  function handle
+  function handleHealthClick() {
+
+  }
+
+  function handleHistoryClick() {
+
+  }
+
+  function handleAchievementsClick() {
+
+  }
+
+  function handleAboutClick() {
+
+  }
 
   function renderComponent(user: any): JSX.Element {
     return (
@@ -24,10 +38,10 @@ export function Home() {
         </div>
         <div className='HomeMenu'>
           <CRButton className='HomeInitButton' onClick={() => { }}>Iniciar nova viagem</CRButton>
-          <CRButton onClick={() => { }}>Minha saúde</CRButton>
-          <CRButton onClick={() => { }}>Histórico de viagens</CRButton>
-          <CRButton onClick={() => { }}>Minhas conquistas</CRButton>
-          <CRButton onClick={() => { }}>Sobre o APP</CRButton>
+          <CRButton onClick={handleHealthClick}>Minha saúde</CRButton>
+          <CRButton onClick={handleHistoryClick}>Histórico de viagens</CRButton>
+          <CRButton onClick={handleAchievementsClick}>Minhas conquistas</CRButton>
+          <CRButton onClick={handleAboutClick}>Sobre o APP</CRButton>
           <CRSignOutButton className='HomeSignOutButton'>Sair do app</CRSignOutButton>
         </div>
         <footer className='HomeFooter'>
