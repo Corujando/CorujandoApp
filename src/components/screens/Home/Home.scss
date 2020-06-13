@@ -1,0 +1,66 @@
+$side-spacing: 30px;
+
+.Home {
+  background: linear-gradient(29.67deg, #3787b7 -3.31%, #274798 87.77%);
+  padding-top: 15px;
+  width: 100vw;
+  height: 100vh;
+  .HomeHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: $side-spacing;
+    .HelloText {
+      margin-right: 10px;
+      color: white;
+      font-family: Segoe UI;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 21px;
+      text-align: center;
+    }
+  }
+  .HomeMenu {
+    display: flex;
+    flex-direction: column;
+    padding: 50px $side-spacing 0px $side-spacing;
+    button {
+      margin-bottom: 20px;
+    }
+    .HomeInitButton {
+      background-color: white;
+      border-radius: 10px;
+      color: #274798;
+      padding-top: 35px;
+      padding-bottom: 35px;
+    }
+    .HomeSignOutButton {
+      background-color: unset;
+      border: none;
+      color: white;
+      font-weight: normal;
+    }
+  }
+  .HomeFooter {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .HomeLogoImage {
+      width: 50px;
+    }
+
+    .HomeLogoText {
+      font-family: 'Montserrat Alternates', sans-serif;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+    }
+  }
+}
