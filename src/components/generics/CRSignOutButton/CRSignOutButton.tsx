@@ -1,6 +1,6 @@
 import React from 'react'
 import firebase from 'firebase'
-import { CRButton } from '../button/CRButton'
+import { CRButton } from '../CRButton/CRButton'
 
 interface CRSignOutButtonProps {
   text?: string,
