@@ -1,13 +1,14 @@
 import { Fab } from '@material-ui/core'
-import React, { useState } from 'react'
-import { Paths } from '../../../config/Paths'
-import { useParams, useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 import CloseButton from '../../../assets/close_menu.png'
 import EmergencySymbol from '../../../assets/emergency_button.png'
 import EmergencySymbolLarge from '../../../assets/emergency_button_large.png'
 import jojoScared from '../../../assets/jojo-assustado.png'
 import MenuButton from '../../../assets/open_menu.png'
+import { Paths } from '../../../config/Paths'
 import { googleService } from '../../../services/googleService'
+import { navigationService, UserPosition } from '../../../services/navigationService'
 import { CRButton } from '../../generics/CRButton/CRButton'
 import { CRMap } from '../../generics/CRMap/CRMap'
 import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
@@ -25,6 +26,11 @@ export function Trip() {
   const [openMenu, setOpenMenu] = useState(false)
   const [openTimerMenu, setOpenTimerMenu] = useState(false)
   const [showHelpModal, setShowHelpModal] = useState(false)
+  const [userPosition, setUserPosition] = useState<UserPosition>(null)
+
+  useEffect(() => {
+    navigationService.saveCurrentLocation(location => setUserPosition(location))
+  }, [])
 
   function handleCloseMenuClick() {
     setOpenMenu(false)
@@ -96,7 +102,7 @@ export function Trip() {
   }
 
   function renderMap() {
-    return <CRMap zoom={12} place={new google.maps.LatLng({ lat: -30.056, lng: -51.1622 })} />
+    return userPosition && <CRMap nightMode zoom={16} place={userPosition} />
   }
 
   function renderHeader(): JSX.Element {

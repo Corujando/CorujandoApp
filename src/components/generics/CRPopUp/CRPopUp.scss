@@ -85,5 +85,6 @@
 
 .modal-popup,
 .faded {
-  background-color: rgba(black, .5);
+  background-color: rgba(black, 0.5);
+  z-index: 9999999;
 }

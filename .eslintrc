@@ -93,6 +93,7 @@
         "destructuring": "any",
         "ignoreReadBeforeAssign": false
       }
-    ]
+    ],
+    "class-methods-use-this": "off"
   }
 }
