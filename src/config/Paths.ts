@@ -3,5 +3,6 @@ export enum Paths {
   HOME = '/',
   DESTINY = '/destino',
   FINISHED_TRIP= '/finished-trip',
-  HEALTH='/health'
+  HEALTH='/health',
+  ARTICLE='/article'
 }
