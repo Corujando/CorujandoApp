@@ -34,15 +34,40 @@
     margin-right: 60%;
   }
 
+  .Buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
   .BackTripButton {
     background-color: white;
     color: #274798;
     font-size: 25px;
     font-weight: bold;
     border-radius: 30px;
-    border-color: #274798;
+    border: 1px solid white;
     outline: none;
     padding: 15px;
     width: 90%;
+    margin-top: 40px;
+  }
+
+  .FinishTripButton {
+    background-color: #274798;
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+    border-radius: 30px;
+    border: 1px solid white;
+    border-width: 2px;
+    outline: none;
+    padding: 15px;
+    width: 75%;
+    margin-top: 20px;
+  }
+
+  .Logo {
+    margin-top: 10%;
   }
 }
