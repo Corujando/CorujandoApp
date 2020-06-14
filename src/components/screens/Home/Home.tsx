@@ -1,68 +1,66 @@
-import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Avatar } from '@material-ui/core'
 import { FirebaseAuthConsumer } from '@react-firebase/auth'
-import CRSignOutButton from '../../generics/CRSignOutButton/CRSignOutButton'
-import Avatar from '@material-ui/core/Avatar'
-import { CRButton } from '../../generics'
+import React from 'react'
+import { Redirect, useHistory } from 'react-router-dom'
 import logo from '../../../assets/logo.png'
+import { CRButton } from '../../generics/CRButton/CRButton'
+import CRSignOutButton from '../../generics/CRSignOutButton/CRSignOutButton'
 import './Home.scss'
-
+import { Paths } from '../../../config/Paths'
+import { CRFooter } from '../../generics/CRFooter/CRFooter'
 
 export function Home() {
+  const history = useHistory()
+
   function isFirebaseObjectLoaded(firebase: any) {
     return Object.keys(firebase).length !== 0
   }
 
-  function handleHealthClick() {
+  function handleHealthClick() {}
 
-  }
+  function handleHistoryClick() {}
 
-  function handleHistoryClick() {
+  function handleAchievementsClick() {}
 
-  }
+  function handleAboutClick() {}
 
-  function handleAchievementsClick() {
-
-  }
-
-  function handleAboutClick() {
-
+  function handleStartTripClick() {
+    history.push(Paths.DESTINY)
   }
 
   function renderComponent(user: any): JSX.Element {
     return (
-      <div className='Home'>
-        <div className='HomeHeader'>
-          <p className='HelloText'>Bom dia, {user.displayName}!</p>
+      <div className="Home">
+        <div className="HomeHeader">
+          <p className="HelloText">Bom dia, {user.displayName}!</p>
           <Avatar alt="Foto perfil" src={user.photoURL} />
         </div>
-        <div className='HomeMenu'>
-          <CRButton className='HomeInitButton' onClick={() => { }}>Iniciar nova viagem</CRButton>
+        <div className="HomeMenu">
+          <CRButton className="HomeInitButton" onClick={handleStartTripClick}>
+            Iniciar nova viagem
+          </CRButton>
           <CRButton onClick={handleHealthClick}>Minha saúde</CRButton>
           <CRButton onClick={handleHistoryClick}>Histórico de viagens</CRButton>
           <CRButton onClick={handleAchievementsClick}>Minhas conquistas</CRButton>
           <CRButton onClick={handleAboutClick}>Sobre o APP</CRButton>
-          <CRSignOutButton className='HomeSignOutButton'>Sair do app</CRSignOutButton>
+          <CRSignOutButton className="HomeSignOutButton">Sair do app</CRSignOutButton>
         </div>
-        <footer className='HomeFooter'>
-          <img src={logo} className='HomeLogoImage' alt="Corujando" />
-          <p className='HomeLogoText'>CORUJANDO</p>
-        </footer>
+        <CRFooter />
       </div>
     )
   }
 
   return (
-    <React.Fragment>
+    <>
       <FirebaseAuthConsumer>
         {({ isSignedIn, user, firebase }) => {
           if (!isSignedIn) {
-            return isFirebaseObjectLoaded(firebase) ? <Redirect to="/login" /> : null
-          } else {
-            return renderComponent(user)
+            return isFirebaseObjectLoaded(firebase) ? <Redirect to={Paths.LOGIN} /> : null
           }
+
+          return renderComponent(user)
         }}
       </FirebaseAuthConsumer>
-    </React.Fragment>
+    </>
   )
 }

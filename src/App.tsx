@@ -4,10 +4,11 @@ import 'firebase/auth'
 import React from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import './App.scss'
+import { Destino } from './components/screens/Destino/Destino'
 import { Home } from './components/screens/Home/Home'
 import { Login } from './components/screens/Login/Login'
 import firebaseConfig from './config/FirebaseConfig'
-import Paths from './config/Paths'
+import { Paths } from './config/Paths'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path={Paths.LOGIN} component={Login} />
+          <Route exact path={Paths.DESTINY} component={Destino} />
           <Route path={Paths.HOME} component={Home} />
           <Redirect to={Paths.HOME} />
         </Switch>
