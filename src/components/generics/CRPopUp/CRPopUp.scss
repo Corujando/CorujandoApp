@@ -23,6 +23,7 @@
     &_title {
         margin-left: 20px;
         margin-top: 10px;
+        font-family: 'Montserrat Alternates', sans-serif;
         display: flex;
         justify-content: space-evenly;
         
@@ -35,6 +36,7 @@
     }
 
     &_principal {
+        font-family: 'Montserrat Alternates', sans-serif;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -50,26 +52,31 @@
         }
 
         &_button_blue {
+            font-family: 'Montserrat Alternates', sans-serif;
             margin-top: 15px;
             font-size: 15px;
             font-weight: bold;
             width: 100%;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 20px;
             background-color: #274798;
+            border-color: #274798;
             color: white;
+            outline: none;
         }
 
         &_button_white {
+            font-family: 'Montserrat Alternates', sans-serif;
             margin-top: 15px;
             font-size: 15px;
             width: 100%;
             font-weight: bold;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 20px;
             background-color: white;
             color: #274798;
             border-color: #274798;
+            outline: none;
         }
     }
   }
