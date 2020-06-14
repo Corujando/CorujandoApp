@@ -26,6 +26,7 @@ export function Trip() {
   const [openMenu, setOpenMenu] = useState(false)
   const [openTimerMenu, setOpenTimerMenu] = useState(false)
   const [showHelpModal, setShowHelpModal] = useState(false)
+  const [showRestModal, setShowRestModal] = useState(true)
   const [userPosition, setUserPosition] = useState<UserPosition>(null)
 
   useEffect(() => {
@@ -99,6 +100,10 @@ export function Trip() {
         onClickSecondaryButton={() => setShowHelpModal(false)}
       />
     )
+  }
+
+  function renderRestModal() {
+    return null
   }
 
   function renderMap() {
@@ -206,6 +211,7 @@ export function Trip() {
       <div className="TripMap">{renderMap()}</div>
       {renderFloatingButton()}
       {showHelpModal && renderHelpModal()}
+      {showRestModal && renderRestModal()}
       {openMenu && <div className="TripMenu">{renderMenu()}</div>}
       <div className={openTimerMenu ? 'TripTimer Open' : 'TripTimer'}>{renderTimer()}</div>
     </div>

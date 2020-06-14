@@ -3,8 +3,19 @@ import './Timer.scss'
 import { Fab } from '@material-ui/core'
 import { CRButton } from '../../generics/CRButton/CRButton'
 
-export const Timer = () => {
-  const [time, setTime] = useState(0)
+interface TimerHook {
+  offset: number
+  callback: () => void
+  targetTime: number
+}
+
+interface TimerProps {
+  initialTime?: number
+  hooks?: TimerHook[]
+}
+
+export function Timer({ initialTime, hooks }: TimerProps) {
+  const [time, setTime] = useState(initialTime || 0)
   const [isActive, setIsActive] = useState(false)
 
   function toggle() {
@@ -18,9 +29,10 @@ export const Timer = () => {
 
   useEffect(() => {
     let interval: any
+    runHooks()
     if (isActive) {
       interval = setInterval(() => {
-        setTime(seconds => seconds + 59)
+        setTime(seconds => seconds + 1)
       }, 1000)
     } else if (!isActive && time !== 0) {
       clearInterval(interval)
@@ -28,9 +40,19 @@ export const Timer = () => {
     return () => clearInterval(interval)
   }, [isActive, time])
 
+  function runHooks() {
+    if (hooks && hooks.length) {
+      hooks.forEach(hook => {
+        if (time + hook.offset >= hook.targetTime) {
+          hook.callback()
+        }
+      })
+    }
+  }
+
   const getCurrentTime = () => {
     const countingTime = {
-      hours: Math.floor((time * 60 * 60) % 24),
+      hours: Math.floor((time / 60 / 60) % 24),
       minutes: Math.floor((time / 60) % 60),
       seconds: Math.floor(time % 60),
     }
