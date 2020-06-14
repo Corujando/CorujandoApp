@@ -23,15 +23,15 @@ export class UserService extends BaseService {
 
   async add(name: string, email: string, photoUrl: string): Promise<String> {
     const userId = await this.addToCollection({ name, email, photoUrl }).then(ref => ref.id)
-    loggedUser = userId
+    this.setLoogedUser(userId)
     return userId
   }
 
-  getLoggedUserId(): string | undefined {
-    return loggedUser
+  getLoggedUserId(): string | null {
+    return localStorage.getItem('loggedUser')
   }
 
   setLoogedUser(id: string) {
-    loggedUser = id
+    localStorage.setItem('loggedUser', id)
   }
 }

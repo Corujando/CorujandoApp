@@ -3,9 +3,9 @@ import { firestore } from 'firebase/app'
 export abstract class BaseService {
   protected abstract PATH: string
 
-  private firestore = firestore()
+  protected firestore = firestore()
 
-  protected getDocumentFromId(id: string) {
+  public getDocumentFromId(id: string) {
     return this.firestore.collection(this.PATH).doc(id).get()
   }
 
@@ -20,7 +20,7 @@ export abstract class BaseService {
     return this.firestore.collection(this.PATH).where(field, '==', value).get()
   }
 
-  protected getUniqueWhereEqualTo(
+  public getUniqueWhereEqualTo(
     field: string | firestore.FieldPath,
     value: any,
   ): Promise<firestore.QuerySnapshot<firestore.DocumentData>> {

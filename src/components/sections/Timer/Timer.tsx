@@ -12,14 +12,22 @@ export interface TimerHook {
 interface TimerProps {
   initialTime?: number
   hooks?: TimerHook[]
+  onPauseClick: () => void
+  onPlayClick: () => void
 }
 
-export function Timer({ initialTime, hooks }: TimerProps) {
+export function Timer({ initialTime, hooks, onPlayClick, onPauseClick }: TimerProps) {
   const [time, setTime] = useState(initialTime || 0)
   const [isActive, setIsActive] = useState(false)
 
   function toggle() {
-    setIsActive(!isActive)
+    const newValue = !isActive
+    setIsActive(newValue)
+    if (newValue) {
+      onPlayClick()
+    } else {
+      onPauseClick()
+    }
   }
 
   function reset() {
