@@ -1,9 +1,6 @@
-class Paths {
-  LOGIN: string = '/login'
-
-  HOME: string = '/'
-
-  FINISHED_TRIP: string = '/finished-trip'
+export enum Paths {
+  LOGIN = '/login',
+  HOME = '/',
+  DESTINY = '/destino',
+  FINISHED_TRIP= '/finished-trip'
 }
-
-export default new Paths()

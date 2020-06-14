@@ -5,6 +5,13 @@
   color: white;
 }
 
+.screen {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(29.67deg, #3787b7 -3.31%, #274798 87.77%);
+  display: flex;
+}
+
 body {
   overflow: hidden;
 }

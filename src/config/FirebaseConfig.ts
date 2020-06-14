@@ -1,4 +1,4 @@
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: 'AIzaSyArrzbnhBzC7Loi_XKD2_FFL_rCaO4_gyA',
   authDomain: 'corujando.firebaseapp.com',
   databaseURL: 'https://corujando.firebaseio.com',

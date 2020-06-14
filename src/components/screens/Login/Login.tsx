@@ -36,9 +36,9 @@ export function Login() {
           return <Redirect to="/" />
         }
         return (
-          <div className="Initial">
-            <div className="Initial__content">
-              <CRLogo className="Initial__Logo" id={id} />
+          <div className="Login">
+            <div className="Login__content">
+              <CRLogo className="Login__Logo" id={id} />
               {renderEverything()}
             </div>
           </div>
