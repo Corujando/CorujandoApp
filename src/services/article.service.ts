@@ -19,4 +19,27 @@ export class ArticleService extends BaseService {
             })
         })
     }
+
+    async getArticleById(id: string) {
+        const result = await this.getDocumentFromId(id)
+        const article = result.data()
+        if (article) {
+            return {
+                id: result.id,
+                imageUrl: article.imageUrl,
+                reference: article.reference,
+                subtitle: article.subtitle,
+                text: article.text,
+                title: article.title
+            } as Article
+        }
+        return {
+            id: '',
+            imageUrl: '',
+            reference: '',
+            subtitle: '',
+            text: '',
+            title: ''
+        } as Article
+    }
 }
