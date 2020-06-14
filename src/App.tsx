@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path={Paths.LOGIN} component={Login} />
-          <Route path={Paths.HOME} component={Home} />
+          <Route path={Paths.HOME} component={() => <Trip location='Goiânia - GO' />} />
           <Redirect to={Paths.HOME} />
         </Switch>
       </BrowserRouter>
