@@ -1,50 +1,72 @@
 .timer {
   background-color: white;
 
-  .title {
-    margin: 0;
-    font-size: 16px;
-    color: #56585a;
-  }
-
   .time-panel {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .time {
-      margin: 0;
-      font-size: 48px;
-      color: #274798;
+    .timer-text {
+      margin-left: 15px;
+      .title {
+        margin: 0;
+        font-size: 16px;
+        color: #56585a;
+        font-family: Segoe UI;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 21px;
+        text-align: left;
+      }
+
+      .time {
+        margin: 0;
+        font-family: Montserrat Alternates;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 39.0625px;
+        line-height: 48px;
+        color: #274798;
+      }
     }
+
     .circle-button {
       border: 8px solid #274798;
-      padding: 15px;
-      border-radius: 100%;
+      background-color: white;
+      width: 70px;
+      height: 70px;
+    }
+
+    .circle-button .CRButton {
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       button {
-        box-sizing: border-box;
         padding: 0;
         -webkit-tap-highlight-color: transparent;
         outline: none;
+        -webkit-user-select: none;
         user-select: none;
         border: 0;
         background: transparent;
         box-sizing: border-box;
-        width: 0;
-        height: 36px;
-
+        width: 0px;
+        height: 34px;
         border-color: transparent transparent transparent #274798;
         transition: 100ms all ease;
         cursor: pointer;
-
-        // play state
         border-style: solid;
         border-width: 18px 0 18px 36px;
+        border-radius: 0;
+        margin-left: 5px;
 
         &.active {
           border-style: double;
-          border-width: 0px 0 0px 36px;
+          border-width: 0 0 0 30px;
+          margin-left: 0;
         }
 
         &:hover {

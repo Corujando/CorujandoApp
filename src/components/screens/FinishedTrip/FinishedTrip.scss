@@ -1,85 +1,85 @@
 .finished-trip {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(29.67deg, #3787b7 -3.31%, #274798 87.77%);
+
+  .title {
+    text-align: center;
+    font-size: 48px;
+    color: #ffffff;
+    font-family: Montserrat Alternates;
+  }
+
+  .data-info {
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .info-name {
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 17px;
+    }
+
+    .info {
+      font-weight: 600;
+      font-family: Montserrat Alternates;
+      font-size: 25px;
+      line-height: 30px;
+      padding-bottom: 20px;
+    }
+
+    .badge-list {
+      padding: 0;
+      list-style: none;
+      display: flex;
+      justify-content: center;
+
+      .badge-unlocked {
+        margin: 0 10px;
+      }
+    }
+  }
+
+  .actions {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(29.67deg, #3787b7 -3.31%, #274798 87.77%);
 
-    .title {
-        text-align: center;
-        font-size: 48px;
-        color: #ffffff;
-        font-family: Montserrat Alternates;
+    .primary {
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      color: #274798;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 24px;
+      padding: 14px 38px 15px 38px;
+      background: #ffffff;
+      border-radius: 49px;
+      margin-bottom: 20px;
+      font-family: Montserrat Alternates;
     }
 
-    .data-info {
-        color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-
-        .info-name {
-            font-weight: 300;
-            font-size: 16px;
-            line-height: 17px;
-        }
-
-        .info {
-            font-weight: 600;
-            font-family: Montserrat Alternates;
-            font-size: 25px;
-            line-height: 30px;
-            padding-bottom: 20px;
-        }
-
-        .badge-list {
-            padding: 0;
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            
-            .badge-unlocked {
-                margin: 0 10px;
-            }
-        }
+    .secondary {
+      text-decoration: none;
+      width: fit-content;
+      font-family: Montserrat Alternates;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+      color: white;
+      background-color: transparent;
+      border: 2px solid #ffffff;
+      box-sizing: border-box;
+      border-radius: 49px;
+      padding: 12px 33px 13px 33px;
     }
-
-    .actions {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .primary {
-            text-decoration: none;
-            text-align: center;
-            cursor: pointer;
-            color: #274798;
-            font-size: 20px;
-            font-weight: 600;
-            line-height: 24px;
-            padding: 14px 38px 15px 38px;
-            background: #ffffff;
-            border-radius: 49px;
-            margin-bottom: 20px;
-            font-family: Montserrat Alternates;
-        }
-
-        .secondary {
-            text-decoration: none;
-            width: fit-content;
-            font-family: Montserrat Alternates;
-            text-align: center;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 20px;
-            color: white;
-            background-color: transparent;
-            border: 2px solid #ffffff;
-            box-sizing: border-box;
-            border-radius: 49px;
-            padding: 12px 33px 13px 33px;
-        }
-    }
+  }
 }

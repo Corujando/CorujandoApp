@@ -16,21 +16,25 @@
     justify-content: space-evenly;
 
     &_title {
+      width: 100%;
       font-family: 'Montserrat Alternates', sans-serif;
       display: flex;
       justify-content: space-evenly;
+      align-items: center;
 
       &_container {
         flex-direction: column;
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 100%;
       }
 
       &_text {
         color: #274798;
         font-weight: bold;
-        font-size: 30px;
+        font-size: 26px;
+        max-width: 135px;
       }
     }
 
@@ -81,5 +85,6 @@
 
 .modal-popup,
 .faded {
-  background-color: #74747485;
+  background-color: rgba(black, 0.5);
+  z-index: 9999999;
 }

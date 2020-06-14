@@ -11,8 +11,10 @@ import { Health } from './components/screens/Health/Health'
 import { Article } from './components/screens/Article/Article' 
 import firebaseConfig from './config/FirebaseConfig'
 import { Paths } from './config/Paths'
-
+import { Trip } from './components/screens/Trip/Trip'
 import { FinishedTrip } from './components/screens/FinishedTrip/FinishedTrip';
+import { BadgeScreen } from './components/screens/Badges/Badges';
+
 
 function App() {
   return (
@@ -20,10 +22,15 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path={Paths.LOGIN} component={Login} />
-          <Route exact path={Paths.FINISHED_TRIP} component={FinishedTrip}/>
+          <Route exact path={Paths.FINISHED_TRIP} component={FinishedTrip} />
           <Route exact path={Paths.DESTINY} component={Destino} />
+<<<<<<< HEAD
           <Route exact path={Paths.HEALTH} component={Health} />
           <Route exact path={Paths.ARTICLE} component={Article} />
+=======
+          <Route exact path={Paths.BADGES} component={BadgeScreen} />
+          <Route exact path={Paths.TRIP} component={Trip} />
+>>>>>>> d81d4dea0c3a764f51b08624d1a20ae7fb28f811
           <Route path={Paths.HOME} component={Home} />
           <Redirect to={Paths.HOME} />
         </Switch>

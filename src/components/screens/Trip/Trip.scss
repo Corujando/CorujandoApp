@@ -4,8 +4,33 @@
   width: 100vw;
   height: 100vh;
   background: #274798;
+  overflow: hidden;
+
+  .FloatingButton {
+    position: absolute !important;
+    bottom: 175px;
+    right: 20px;
+  }
+
+  .model-popup {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .CRPopUp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40%;
+    }
+  }
 
   .TripMap {
+    height: calc(100vh - 80px);
     margin-bottom: 50px;
   }
 
@@ -19,13 +44,14 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      width: 50%;
+      width: 30%;
       .TripHeaderOpenMenuButton {
         margin-right: 20px;
         width: 33px;
         height: 22px;
         border: none;
         background: none;
+        outline: none;
       }
       .TripHeaderCloseMenuButton {
         margin-right: 20px;
@@ -33,13 +59,14 @@
         height: 20px;
         border: none;
         background: none;
+        outline: none;
       }
     }
     .TripHeaderLocation {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 50%;
+      width: 70%;
       margin-left: 15px;
       color: white;
       .TripHeaderLocationTitle {
@@ -91,24 +118,102 @@
         margin-bottom: 25px;
       }
     }
-    .TripHelp {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      width: 80%;
-      margin-left: 10%;
-      margin-right: 10%;
+  }
+
+  .TripTimer {
+    position: absolute;
+    height: 130px;
+    background-color: white;
+    width: 100%;
+    border-radius: 20px 20px 0px 0px;
+    box-shadow: 0px 0px 10px rgba(53, 56, 58, 0.25);
+    bottom: 0;
+
+    .TripTimerData {
+      padding: 0;
       border: none;
-      border-radius: 10px;
-      padding: 10px;
-      background-color: white;
+      background: none;
       outline: none;
-      .TripHelpText {
-        font-family: 'Montserrat Alternates', sans-serif;
-        margin-left: 10px;
+      height: calc(100% - 30px);
+      width: calc(100% - 20px);
+      padding: 20px 10px 10px 10px;
+      .TripTimerInfo {
+        padding: 30px 20px 0px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-style: normal;
+        font-family: Segoe UI;
+        line-height: 8px;
         font-size: 16px;
+        .TripInfoTitle {
+          width: 60%;
+          display: flex;
+          flex-direction: column;
+          font-weight: normal;
+        }
+        .TripInfoValue {
+          width: 40%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          font-weight: bold;
+        }
       }
+      .FinishTripButton {
+        border: 2px solid #274798;
+        color: #274798;
+        font-weight: bold;
+        margin-right: 10%;
+        margin-left: 10%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 80%;
+      }
+    }
+
+    .TripTimerOpenButton {
+      position: absolute;
+      bottom: 0px;
+      background: none;
+      outline: none;
+      border: none;
+      padding: 0;
+      height: 130px;
+      width: 100%;
+    }
+
+    &.Open {
+      height: 425px;
+
+      .TripTimerOpenButton {
+        height: 425px;
+      }
+    }
+
+    .TripHelp {
+      border: 2px solid #fa7c54;
+    }
+  }
+
+  .TripHelp {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: none;
+    border-radius: 10px;
+    padding: 5x;
+    background-color: white;
+    outline: none;
+    .TripHelpText {
+      font-family: 'Montserrat Alternates', sans-serif;
+      margin-left: 10px;
+      font-size: 16px;
     }
   }
 }

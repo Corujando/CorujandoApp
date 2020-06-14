@@ -1,11 +1,11 @@
 import React from 'react'
 import './FinishedTrip.scss'
 import { Badge } from '../../generics/Badge/Badge'
-import { BadgeProps } from '../../generics/Badge/Badge';
-import { TimeFormatter, DistanceFormatter } from '../../../formatters';
-import { RouteComponentProps, StaticContext } from 'react-router';
-import { Link } from 'react-router-dom';
-import { Badge as BadgeModel } from '../../../model/badge';
+import { BadgeProps } from '../../generics/Badge/Badge'
+import { TimeFormatter, DistanceFormatter } from '../../../formatters'
+import { RouteComponentProps, StaticContext } from 'react-router'
+import { Link } from 'react-router-dom'
+import { Badge as BadgeModel } from '../../../model/badge'
 
 export interface FinishedTripProps {
   badges: BadgeModel[]
@@ -13,13 +13,13 @@ export interface FinishedTripProps {
   time: number
 }
 
-
 export const FinishedTrip = (props: RouteComponentProps<{}, StaticContext, FinishedTripProps>) => {
-  const { badges, totalDistance, time } = props.location.state;
-
+  const { badges, totalDistance, time } = props.location.state
 
   const renderBadges = () => {
-    return badges.map((badge: BadgeModel) => <Badge additionalClass='badge-unlocked' imageSource={badge.imageUrl} title={badge.title} />);
+    return badges.map((badge: BadgeModel) => (
+      <Badge additionalClass="badge-unlocked" imageSource={badge.imageUrl} title={badge.title} />
+    ))
   }
 
   const renderBadgesSection = () => {
@@ -27,14 +27,12 @@ export const FinishedTrip = (props: RouteComponentProps<{}, StaticContext, Finis
       return (
         <>
           <span className="info-name">Badges conquistados:</span>
-          <ul className="badge-list">
-            {renderBadges()}
-          </ul>
+          <ul className="badge-list">{renderBadges()}</ul>
         </>
       )
     }
 
-    return null;
+    return null
   }
 
   return (
@@ -52,8 +50,12 @@ export const FinishedTrip = (props: RouteComponentProps<{}, StaticContext, Finis
       </div>
 
       <div className="actions">
-        <Link to="/achieviments" className="primary">Ver minhas conquistas</Link>
-        <Link to="/" className="secondary">Ir para tela inicial</Link>
+        <Link to="/achieviments" className="primary">
+          Ver minhas conquistas
+        </Link>
+        <Link to="/" className="secondary">
+          Ir para tela inicial
+        </Link>
       </div>
     </div>
   )

@@ -2,7 +2,10 @@ export enum Paths {
   LOGIN = '/login',
   HOME = '/',
   DESTINY = '/destino',
-  FINISHED_TRIP= '/finished-trip',
   HEALTH='/health',
-  ARTICLE='/article'
+  ARTICLE='/article',
+  BADGES = '/badges',
+  TRIP = '/trip/:destiny',
+  TRIP_QUERY = '/trip/',
+  FINISHED_TRIP = '/finished-trip',
 }

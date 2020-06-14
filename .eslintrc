@@ -86,12 +86,14 @@
     "comma-dangle": ["error", "always-multiline"],
     "no-cond-assign": ["error", "always"],
     "no-extra-boolean-cast": 0,
+    "class-methods-use-this": "off",
     "prefer-const": [
       "error",
       {
         "destructuring": "any",
         "ignoreReadBeforeAssign": false
       }
-    ]
+    ],
+    "class-methods-use-this": "off"
   }
 }
