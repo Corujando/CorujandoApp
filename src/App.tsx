@@ -10,12 +10,15 @@ import { Login } from './components/screens/Login/Login'
 import firebaseConfig from './config/FirebaseConfig'
 import { Paths } from './config/Paths'
 
+import { FinishedTrip } from './components/screens/FinishedTrip/FinishedTrip';
+
 function App() {
   return (
     <FirebaseAuthProvider {...firebaseConfig} firebase={firebase}>
       <BrowserRouter>
         <Switch>
           <Route exact path={Paths.LOGIN} component={Login} />
+          <Route exact path={Paths.FINISHED_TRIP} component={FinishedTrip}/>
           <Route exact path={Paths.DESTINY} component={Destino} />
           <Route path={Paths.HOME} component={Home} />
           <Redirect to={Paths.HOME} />
