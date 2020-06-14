@@ -7,4 +7,14 @@ export class TripService extends BaseService {
   async add(trip: Trip): Promise<String> {
     return this.addToCollection(trip).then(ref => ref.id)
   }
+
+  async getWhereEqualToUserId(userId: string): Promise<Trip[]> {
+    const queryResult = await this.getWhereEqualTo('userId', userId)
+
+    const docs = queryResult.docs
+
+    const trips = docs.map(doc => doc.data() as Trip)
+
+    return trips
+  }
 }
