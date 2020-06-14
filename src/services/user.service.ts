@@ -15,7 +15,7 @@ export class UserService extends BaseService {
         name: data.name,
         email: data.email,
         photoUrl: data.photoUrl,
-        badges: data.badges,
+        badges: data.badges || [],
       }
     })
   }
