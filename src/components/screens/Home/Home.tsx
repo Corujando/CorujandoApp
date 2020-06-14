@@ -19,7 +19,9 @@ export function Home() {
 
   function handleHistoryClick() {}
 
-  function handleAchievementsClick() {}
+  function handleAchievementsClick() {
+    history.push(Paths.BADGES)
+  }
 
   function handleAboutClick() {}
 
