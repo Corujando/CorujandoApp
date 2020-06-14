@@ -1,14 +1,10 @@
 import React from 'react'
 import './Article.scss'
 import logo from '../../../assets/jojo-blue-horizontal.png'
+import { useParams } from 'react-router'
 
 interface ArticleProps {
     id: string
-    imageUrl: string
-    title: string
-    subtitle: string
-    reference: string
-    text: string
 }
 
 const mock = {
@@ -23,19 +19,20 @@ const mock = {
 
 export function Article() {
 
-    function handleArticle() {}
+    // Load from firebase
+    const { id } = useParams<ArticleProps>()
 
     return (
-        <div className="Article">
-            <img className='Image' src={mock.imageUrl} alt=''/>
+        <div className="ArticleScreen">
+            <img className='Image' src={mock.imageUrl} alt='' />
             <h2 className='Title'>{mock.title}</h2>
             <h4 className='SubTitle'>{mock.subtitle}</h4>
             <p className='SubTitle'>{mock.text}</p>
-            <h4 className='SubTitle'>Fonte: 
+            <h4 className='SubTitle'>Fonte:
                 <a className='Link' href={mock.reference}>{mock.title}</a>
             </h4>
             <div className="Icon">
-                <img className='Logo' src={logo} alt=''/>
+                <img className='Logo' src={logo} alt='' />
             </div>
         </div>
     )

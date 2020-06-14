@@ -3,7 +3,7 @@ export enum Paths {
   HOME = '/',
   DESTINY = '/destino',
   HEALTH='/health',
-  ARTICLE='/article',
+  ARTICLE='/article/:id',
   BADGES = '/badges',
   TRIP = '/trip/:destiny',
   TRIP_QUERY = '/trip/',

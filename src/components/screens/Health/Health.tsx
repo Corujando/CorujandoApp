@@ -1,7 +1,9 @@
 import React from 'react'
 import './Health.scss'
-import logo from '../../../assets/jojo-horizontal.png'
+import { CRFooter } from '../../generics/CRFooter/CRFooter'
 import { Link } from 'react-router-dom';
+import { Card } from '../../generics/Card/Card';
+import { CardItem } from '../../generics/CardItem/CardItem';
 
 export function Health() {
 
@@ -27,28 +29,20 @@ export function Health() {
     function renderArticle() {
         return (
             mock.map((value, key) => (
-                <div className='Article'>
-                    <hr className='Line'/>
-                    <div className='Link'>
-                        <div className='Content'>
-                            <img className='Image' src={value.imageUrl} alt=''/>
-                            <div className='Write'>
-                                <h4 className='Title'>{value.title}</h4>
-                                <h6 className='SubTitle'>{value.subtitle}</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        )))
+                <>
+                    <Link to={`/article/${value.id}`}>
+                        <CardItem key={key} title={value.title} subtitle={value.subtitle} imageUrl={value.imageUrl} />
+                    </Link>
+                </>
+            )))
     }
 
     return (
         <div className="Health">
-            <div className="Card">
-                <h2 className='Title'>Minha Saúde</h2>
+            <Card title="Minha Saúde">
                 {renderArticle()}
-            </div>
-            <img src={logo} alt='Logo' className='Img'/>
+            </Card>
+            <CRFooter />
         </div>
     )
 }
