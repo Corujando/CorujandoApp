@@ -17,7 +17,9 @@ export function Home() {
 
   function handleHealthClick() {}
 
-  function handleHistoryClick() {}
+  function handleHistoryClick() {
+    history.push(Paths.MY_TRIPS)
+  }
 
   function handleAchievementsClick() {
     history.push(Paths.BADGES)
