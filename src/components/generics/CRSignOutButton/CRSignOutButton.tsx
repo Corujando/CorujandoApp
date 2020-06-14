@@ -3,9 +3,9 @@ import firebase from 'firebase'
 import { CRButton } from '../CRButton/CRButton'
 
 interface CRSignOutButtonProps {
-  text?: string,
-  disable?: boolean,
-  className?: string,
+  text?: string
+  disable?: boolean
+  className?: string
   children?: string
 }
 
@@ -14,5 +14,5 @@ export default function CRSignOutButton(props: CRSignOutButtonProps) {
     firebase.auth().signOut()
   }
 
-  return <CRButton {...props} onClick={handleGoogleSignOutClick}/>
+  return <CRButton {...props} onClick={handleGoogleSignOutClick} />
 }

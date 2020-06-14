@@ -2,12 +2,11 @@ import { Avatar } from '@material-ui/core'
 import { FirebaseAuthConsumer } from '@react-firebase/auth'
 import React from 'react'
 import { Redirect, useHistory } from 'react-router-dom'
-import logo from '../../../assets/logo.png'
+import { Paths } from '../../../config/Paths'
 import { CRButton } from '../../generics/CRButton/CRButton'
+import { CRFooter } from '../../generics/CRFooter/CRFooter'
 import CRSignOutButton from '../../generics/CRSignOutButton/CRSignOutButton'
 import './Home.scss'
-import { Paths } from '../../../config/Paths'
-import { CRFooter } from '../../generics/CRFooter/CRFooter'
 
 export function Home() {
   const history = useHistory()
