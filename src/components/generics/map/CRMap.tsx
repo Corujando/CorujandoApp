@@ -1,5 +1,6 @@
-import GoogleMapReact, { Coords } from 'google-map-react'
-import React from 'react'
+import { Coords } from 'google-map-react'
+import React, { useEffect } from 'react'
+import icon from '../../../assets/icone.png'
 
 export type MarkerComponent = (props: Marker) => JSX.Element
 
@@ -35,24 +36,37 @@ const apiIsLoaded = (map: any, maps: any, places: Coords[] | undefined) => {
 
 interface CRMapProps {
   center?: Coords
-  zoom: number
-  marker: Marker
-  MarkerComponent: MarkerComponent
-  places?: Coords[]
+  zoom?: number
+  place: google.maps.LatLng
 }
 
-export function CRMap({ center, marker, zoom, MarkerComponent, places }: CRMapProps) {
+let map: google.maps.Map<HTMLElement>
+let marker: google.maps.Marker
+
+export function CRMap({ center, zoom, place }: CRMapProps) {
+  useEffect(initMap)
+
+  function initMap() {
+    const defaultCenter = new google.maps.LatLng(-30.056, -51.1622)
+    map = new google.maps.Map(document.getElementById('map')!!, {
+      center: center || defaultCenter,
+      zoom: zoom || 15,
+    })
+
+    createMarker()
+  }
+
+  function createMarker() {
+    marker = new google.maps.Marker({
+      map,
+      position: place,
+      icon,
+    })
+  }
+
   return (
     <div style={{ height: '100vh', width: '100%' }}>
-      <GoogleMapReact
-        yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, places)}
-        bootstrapURLKeys={{ key: 'AIzaSyAtzw24zSFr-hVB8g0IGQBstCnSbnPp6NM' }}
-        defaultCenter={{ lat: -30.0925399, lng: -51.1758782 }}
-        center={center}
-        defaultZoom={zoom}>
-        <MarkerComponent {...marker} />
-      </GoogleMapReact>
+      <div style={{ height: '100%' }} id="map" />
     </div>
   )
 }
