@@ -1,11 +1,25 @@
 import React from 'react'
 import './PausedTrip.scss'
 import logo from '../../../assets/jojo-horizontal.png'
+import { useParams, useHistory } from 'react-router'
+import { Paths } from '../../../config/Paths'
+import { navigationService } from '../../../services/navigationService'
+
+interface PausedTripParams {
+  time: string
+}
 
 export function PausedTrip() {
-  function handleBackTripClick() {}
+  const { time } = useParams<PausedTripParams>()
+  const history = useHistory()
 
-  function handleFinishTripClick() {}
+  function handleBackTripClick() {
+    history.push(Paths.TRIP_QUERY + navigationService.getUserDestinyText() + '/' + time)
+  }
+
+  function handleMyTrips() {
+    history.push(Paths.MY_TRIPS)
+  }
 
   function renderDistance() {
     return <h2 className="Distance">536 km</h2>
@@ -24,7 +38,7 @@ export function PausedTrip() {
       <button className="BackTripButton" onClick={handleBackTripClick}>
         Voltar para viagem
       </button>
-      <button className="FinishTripButton" onClick={handleFinishTripClick}>
+      <button className="FinishTripButton" onClick={handleMyTrips}>
         Histórico de viagens
       </button>
       <img className="Logo" src={logo} alt="Logo" />
