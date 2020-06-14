@@ -1,10 +1,10 @@
 import { FirebaseAuthConsumer } from '@react-firebase/auth'
 import React, { useState } from 'react'
 import { Redirect } from 'react-router'
+import { UserService } from '../../../services/userService'
 import CRGoogleLoginButton from '../../generics/CRGoogleLoginButton/CRGoogleLoginButton'
 import { CRLogo } from '../../generics/CRLogo/CRLogo'
 import './Login.scss'
-import { UserService } from '../../../services/user.service'
 
 export function Login() {
   const [id, setId] = useState('')
@@ -35,7 +35,9 @@ export function Login() {
     const userFromDb = await userService.get(user!!.email)
     if (!userFromDb) {
       userService.add(user.displayName, user.email, user.photoURL)
+      return
     }
+    userService.setLoogedUser(userFromDb.id)
   }
 
   return (

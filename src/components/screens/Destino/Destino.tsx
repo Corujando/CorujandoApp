@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Paths } from '../../../config/Paths'
-import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
-import { CRPlacesInput } from '../../generics/CRPlacesInput/CRPlacesInput'
 import { CRFooter } from '../../generics/CRFooter/CRFooter'
+import { CRPlacesInput } from '../../generics/CRPlacesInput/CRPlacesInput'
+import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
 import './Destino.scss'
+import { navigationService } from '../../../services/navigationService'
 
 const UF_GOOGLE_ID = 'administrative_area_level_1'
 
@@ -21,6 +22,7 @@ export function Destino() {
     setInputValue(prediction.description)
     const uf = geocoded.address_components.find(c => c.types.includes(UF_GOOGLE_ID))!!.short_name
     setStrippedText(`${prediction.structured_formatting.main_text} - ${uf}`)
+    navigationService.saveUserDestiny(geocoded)
   }
 
   function startTrip() {

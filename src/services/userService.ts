@@ -1,5 +1,6 @@
 import { User } from '../model/user'
 import { BaseService } from './base.service'
+let loggedUser: string | undefined
 
 export class UserService extends BaseService {
   PATH = 'user'
@@ -20,7 +21,17 @@ export class UserService extends BaseService {
     })
   }
 
-  add(name: string, email: string, photoUrl: string): Promise<String> {
-    return this.addToCollection({ name, email, photoUrl }).then(ref => ref.id)
+  async add(name: string, email: string, photoUrl: string): Promise<String> {
+    const userId = await this.addToCollection({ name, email, photoUrl }).then(ref => ref.id)
+    loggedUser = userId
+    return userId
+  }
+
+  getLoggedUserId(): string | undefined {
+    return loggedUser
+  }
+
+  setLoogedUser(id: string) {
+    loggedUser = id
   }
 }

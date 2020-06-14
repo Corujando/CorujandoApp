@@ -1,4 +1,5 @@
 import { Fab } from '@material-ui/core'
+import * as firebase from 'firebase'
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import CloseButton from '../../../assets/close_menu.png'
@@ -15,9 +16,11 @@ import { CRButton } from '../../generics/CRButton/CRButton'
 import { CRMap } from '../../generics/CRMap/CRMap'
 import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
 import { Timer } from '../../sections'
-import './Trip.scss'
 import { TimerHook } from '../../sections/Timer/Timer'
-
+import './Trip.scss'
+import { Trip as TripModel, TripStatus } from '../../../model/trip'
+import { UserService } from '../../../services/userService'
+import { TripService } from '../../../services/tripService'
 const NIGHT_TIME = 22
 
 function isNightTime() {
@@ -32,6 +35,8 @@ interface TripParams {
   destiny: string
 }
 
+let tripId: string | undefined
+
 export function Trip() {
   const history = useHistory()
   const { destiny } = useParams<TripParams>()
@@ -45,7 +50,10 @@ export function Trip() {
   const [userPosition, setUserPosition] = useState<UserPosition>(null)
 
   useEffect(() => {
-    navigationService.saveCurrentLocation(location => setUserPosition(location))
+    navigationService.saveCurrentLocation(location => {
+      setUserPosition(location)
+      saveTrip(location)
+    })
   }, [])
 
   useEffect(() => {
@@ -55,6 +63,22 @@ export function Trip() {
     }, 10000)
     return () => clearInterval(interval)
   }, [])
+
+  async function saveTrip(location: UserPosition) {
+    const tripService = new TripService()
+    const trip: TripModel = {
+      distance: 1500,
+      finalLocation: new firebase.firestore.GeoPoint(
+        navigationService.getUserDestiny()!!.lat(),
+        navigationService.getUserDestiny()!!.lng(),
+      ),
+      initialLocation: new firebase.firestore.GeoPoint(location!!.lat(), location!!.lng()),
+      status: TripStatus.PAUSED,
+      userId: new UserService().getLoggedUserId()!!,
+    }
+
+    tripId = (await tripService.add(trip)) as string
+  }
 
   function handleCloseMenuClick() {
     setOpenMenu(false)
