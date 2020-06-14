@@ -30,10 +30,13 @@ export function MyTrips() {
 
   useEffect(() => {
     const tripService = new TripService()
-
-    tripService.getWhereEqualToUserId('PTLGcZyz1AmH7vVumIY2').then(trips => {
-      setTrips(trips)
-    })
+    const userId = new UserService().getLoggedUserId()
+    if (userId) {
+      console.log(userId)
+      tripService.getWhereEqualToUserId(userId).then(trips => {
+        setTrips(trips)
+      })
+    }
   })
 
   return (

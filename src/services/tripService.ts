@@ -5,6 +5,7 @@ export class TripService extends BaseService {
   PATH = 'trip'
 
   async add(trip: Trip): Promise<String> {
+    console.log(trip)
     return this.addToCollection(trip).then(ref => ref.id)
   }
 
