@@ -21,5 +21,21 @@
         color: #56585A;
         font-size: 12px;
         margin-left: 10px;
+
+        .Link {
+            color: #56585A;
+        }
+    }
+
+    .Icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .Logo {
+            width: 100px;
+            height: 30px;
+            margin: 5px;
+        }
     }
 }
