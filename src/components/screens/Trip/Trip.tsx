@@ -1,5 +1,5 @@
 import { Fab } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import CloseButton from '../../../assets/close_menu.png'
 import EmergencySymbol from '../../../assets/emergency_button.png'
@@ -12,6 +12,7 @@ import { CRMap } from '../../generics/CRMap/CRMap'
 import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
 import { Timer } from '../../sections'
 import './Trip.scss'
+import { navigationService, UserPosition } from '../../../services/navigationService'
 
 interface TripParams {
   destiny: string
@@ -23,6 +24,11 @@ export function Trip() {
   const [openMenu, setOpenMenu] = useState(false)
   const [openTimerMenu, setOpenTimerMenu] = useState(false)
   const [showHelpModal, setShowHelpModal] = useState(false)
+  const [userPosition, setUserPosition] = useState<UserPosition>(null)
+
+  useEffect(() => {
+    navigationService.saveCurrentLocation(location => setUserPosition(location))
+  }, [])
 
   function handleCloseMenuClick() {
     setOpenMenu(false)
@@ -78,7 +84,7 @@ export function Trip() {
   }
 
   function renderMap() {
-    return <CRMap zoom={12} place={new google.maps.LatLng({ lat: -30.056, lng: -51.1622 })} />
+    return userPosition && <CRMap zoom={12} place={userPosition} />
   }
 
   function renderHeader(): JSX.Element {

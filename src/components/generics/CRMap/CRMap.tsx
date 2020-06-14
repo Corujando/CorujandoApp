@@ -25,7 +25,7 @@ export function CRMap({ center, zoom, place }: CRMapProps) {
   function initMap() {
     const defaultCenter = new google.maps.LatLng(-30.056, -51.1622)
     map = new google.maps.Map(document.getElementById('map')!!, {
-      center: center || defaultCenter,
+      center: center || place || defaultCenter,
       zoom: zoom || 15,
       streetViewControl: false,
       zoomControl: false,
