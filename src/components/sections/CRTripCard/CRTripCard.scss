@@ -30,3 +30,11 @@
 .MuiExpansionPanelSummary-content {
   margin: 5px 0px !important;
 }
+
+.TripCardBadges {
+  display: flex;
+  flex-direction: row;
+  div {
+    margin-right: 5px;
+  }
+}

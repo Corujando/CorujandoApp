@@ -13,6 +13,7 @@ import { TimeFormatter } from '../../../formatters/TimeFormatter'
 import { BreakService } from '../../../services/breakService'
 import { UserService } from '../../../services/userService'
 import { Badge } from '../../../model/badge'
+import { BadgeService } from '../../../services/badge.service'
 import './CRTripCard.scss'
 
 export function CRTripCard(props: Trip) {
@@ -21,12 +22,25 @@ export function CRTripCard(props: Trip) {
   const [badges, setBadges] = useState([] as Badge[])
 
   useEffect(() => {
-    const breadkService = new BreakService()
+    const breakService = new BreakService()
     if(props.id) {
-      breadkService.getWhereEqualToTripId(props.id).then(breaks => {
+      breakService.getWhereEqualToTripId(props.id).then(breaks => {
         setBreaks(breaks)
       })
     }
+  }, [])
+
+  useEffect(() => {
+    const userService = new UserService()
+    const badgeService = new BadgeService()
+
+    userService.getUsersBadges().then(badgeIds => {
+      badgeService.getAllBadges().then(docs => {
+        const badges = docs as Badge[]
+
+        setBadges(badges.filter(badge => badgeIds.includes(badge.id)))
+      })
+    })
   }, [])
 
   return (
@@ -72,9 +86,11 @@ export function CRTripCard(props: Trip) {
                 Conquistas ganhas:
               </Typography>
               <br />
-              {badges.map(badge => (
-                <Avatar alt="Conquista" src={badge.imageUrl} />
-              ))}
+              <div className="TripCardBadges">
+                {badges.map(badge => (
+                  <Avatar alt="Conquista" src={badge.imageUrl} />
+                ))}
+              </div>
             </>
           )}
         </CardContent>
