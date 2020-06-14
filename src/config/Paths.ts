@@ -4,5 +4,5 @@ export enum Paths {
   DESTINY = '/destino',
   TRIP = '/trip/:destiny',
   TRIP_QUERY = '/trip/',
-  FINISHED_TRIP= '/finished-trip'
+  FINISHED_TRIP = '/finished-trip',
 }
