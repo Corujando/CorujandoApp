@@ -1,3 +1,5 @@
+import { Coords } from 'google-map-react'
+
 export type UserPosition = google.maps.LatLng | null
 class NavigationService {
   private position: Position | undefined
@@ -11,11 +13,14 @@ class NavigationService {
   }
 
   public saveUserDestiny(geocoded: google.maps.GeocoderResult) {
-    this.destiny = geocoded.geometry.location
+    localStorage.setItem('destiny', JSON.stringify(geocoded.geometry.location))
   }
 
-  public getUserDestiny(): UserPosition | undefined {
-    return this.destiny
+  public getUserDestiny(): Coords | null {
+    const fromLocalStorage = localStorage.getItem('destiny') || null
+    const localWindow = window as any
+    localWindow.abc = fromLocalStorage
+    return fromLocalStorage ? (JSON.parse(fromLocalStorage) as Coords) : null
   }
 
   public getUserPosition(): google.maps.LatLng | null {

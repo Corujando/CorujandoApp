@@ -10,17 +10,18 @@ import jojoCoffee from '../../../assets/jojo-coffee.png'
 import jojoSleepy from '../../../assets/jojo-sleepy.png'
 import MenuButton from '../../../assets/open_menu.png'
 import { Paths } from '../../../config/Paths'
+import { Status, Trip as TripModel } from '../../../model/trip'
+import { BreakService } from '../../../services/breakService'
 import { googleService } from '../../../services/googleService'
 import { navigationService, UserPosition } from '../../../services/navigationService'
+import { TripService } from '../../../services/tripService'
+import { UserService } from '../../../services/userService'
 import { CRButton } from '../../generics/CRButton/CRButton'
 import { CRMap } from '../../generics/CRMap/CRMap'
 import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
 import { Timer } from '../../sections'
 import { TimerHook } from '../../sections/Timer/Timer'
 import './Trip.scss'
-import { Trip as TripModel, TripStatus } from '../../../model/trip'
-import { UserService } from '../../../services/userService'
-import { TripService } from '../../../services/tripService'
 const NIGHT_TIME = 22
 
 function isNightTime() {
@@ -38,6 +39,8 @@ interface TripParams {
 let tripId: string | undefined
 
 export function Trip() {
+  const tripService = new TripService()
+  const breakService = new BreakService()
   const history = useHistory()
   const { destiny } = useParams<TripParams>()
 
@@ -65,15 +68,14 @@ export function Trip() {
   }, [])
 
   async function saveTrip(location: UserPosition) {
-    const tripService = new TripService()
     const trip: TripModel = {
       distance: 1500,
       finalLocation: new firebase.firestore.GeoPoint(
-        navigationService.getUserDestiny()!!.lat(),
-        navigationService.getUserDestiny()!!.lng(),
+        navigationService.getUserDestiny()!!.lat,
+        navigationService.getUserDestiny()!!.lng,
       ),
       initialLocation: new firebase.firestore.GeoPoint(location!!.lat(), location!!.lng()),
-      status: TripStatus.PAUSED,
+      status: Status.PAUSED,
       userId: new UserService().getLoggedUserId()!!,
     }
 
@@ -159,7 +161,10 @@ export function Trip() {
         subTitle="Você está perto de completar 5h30 de viagem e estamos chegando em um ponto de descanso, que tal uma pausa?"
         titlePrimaryButton="Fazer parada"
         titleSecondaryButton="Lembrar na próxima parada"
-        onClickPrimaryButton={() => {}}
+        onClickPrimaryButton={() => {
+          onPauseClicked()
+          setShowRestModal(false)
+        }}
         onClickSecondaryButton={() => setShowRestModal(false)}
       />
     )
@@ -257,6 +262,18 @@ export function Trip() {
     ]
   }
 
+  async function onPlayClicked() {
+    tripService.setStatusInProgress(tripId!!)
+    breakService.finishInProgressBreak(tripId!!)
+  }
+
+  async function onPauseClicked() {
+    tripService.setStatusPaused(tripId!!)
+    navigationService.saveCurrentLocation(location => {
+      breakService.saveNewBreak(tripId!!, location!!)
+    })
+  }
+
   function renderTimer(): JSX.Element {
     return (
       <>
@@ -266,7 +283,12 @@ export function Trip() {
           onClick={handleTripTimerButtonClick}
         />
         <div className="TripTimerData">
-          <Timer initialTime={18290} hooks={getTimerHooks()} />
+          <Timer
+            initialTime={18290}
+            hooks={getTimerHooks()}
+            onPlayClick={onPlayClicked}
+            onPauseClick={onPauseClicked}
+          />
           {openTimerMenu && renderTimerMenuInfo()}
         </div>
       </>
