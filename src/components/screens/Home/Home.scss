@@ -44,24 +44,4 @@ $side-spacing: 30px;
       font-weight: normal;
     }
   }
-  .HomeFooter {
-    position: absolute;
-    bottom: 30px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    .HomeLogoImage {
-      width: 50px;
-    }
-
-    .HomeLogoText {
-      font-family: 'Montserrat Alternates', sans-serif;
-      color: white;
-      font-size: 15px;
-      font-weight: bold;
-    }
-  }
 }

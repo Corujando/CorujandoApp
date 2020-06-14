@@ -1,0 +1,22 @@
+.CRFooter {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  &__Logo {
+    &Text {
+      font-family: 'Montserrat Alternates', sans-serif;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    &Image {
+      width: 50px;
+    }
+  }
+}

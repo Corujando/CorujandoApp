@@ -4,34 +4,69 @@ import './CRPopUp.scss'
 interface CRPopUpProps {
   title: string
   subTitle: string
-  titleFirstButton: string
-  onClickFirstButton: Function
-  titleSecondButton: string
-  onClickSecondButton: Function
-  image: string
-}  
+  titlePrimaryButton?: string
+  onClickPrimaryButton?: Function
+  titleSecondaryButton?: string
+  onClickSecondaryButton?: Function
+  image?: string
+  children?: JSX.Element
+  faded?: boolean
+}
 
 export function CRPopUp({
   title,
   subTitle,
-  titleFirstButton,
-  onClickFirstButton,
-  titleSecondButton,
-  onClickSecondButton,
-  image
+  titlePrimaryButton,
+  onClickPrimaryButton,
+  titleSecondaryButton,
+  onClickSecondaryButton,
+  image,
+  children,
+  faded,
 }: CRPopUpProps) {
+  function renderPrimaryButton() {
+    return (
+      titlePrimaryButton &&
+      onClickPrimaryButton && (
+        <button
+          type="submit"
+          className="modal-popup_content_principal_button_blue"
+          onClick={e => onClickPrimaryButton(e)}>
+          {titlePrimaryButton}
+        </button>
+      )
+    )
+  }
+
+  function renderSecondaryButton() {
+    return (
+      titleSecondaryButton &&
+      onClickSecondaryButton && (
+        <button
+          type="button"
+          className="modal-popup_content_principal_button_white"
+          onClick={e => onClickSecondaryButton(e)}>
+          {titleSecondaryButton}
+        </button>
+      )
+    )
+  }
+
   return (
-    <div className='modal-popup'>
-      <div className='modal-popup_content'>
+    <div className={`model-popup ${faded ? 'faded' : ''}`}>
+      <div className="CRPopUp modal-popup_content">
+        <div className="modal-popup_content_title_container">
           <div className="modal-popup_content_title">
-            <img src={image} alt="Jojo Assustado" className='modal-popup_content_title_img'/>
-            <span className='modal-popup_content_title_text'>{title}</span>
+            {image && <img src={image} alt="title" className="modal-popup_content_title_img" />}
+            <span className="modal-popup_content_title_text">{title}</span>
           </div>
-          <div className="modal-popup_content_principal">
-            <span className='modal-popup_content_principal_sub-title'>{subTitle}</span>
-            <button className='modal-popup_content_principal_button_blue' onClick={e => onClickFirstButton(e)}>{titleFirstButton}</button>
-            <button className='modal-popup_content_principal_button_white' onClick={e => onClickSecondButton(e)}>{titleSecondButton}</button>
-          </div>
+          <span className="modal-popup_content_principal_sub-title">{subTitle}</span>
+        </div>
+        <div className="modal-popup_content_principal">
+          {children && children}
+          {renderPrimaryButton()}
+          {renderSecondaryButton()}
+        </div>
       </div>
     </div>
   )
