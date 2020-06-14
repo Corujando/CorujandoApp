@@ -1,6 +1,7 @@
 import { Fab } from '@material-ui/core'
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Paths } from '../../../config/Paths'
+import { useParams, useHistory } from 'react-router-dom'
 import CloseButton from '../../../assets/close_menu.png'
 import EmergencySymbol from '../../../assets/emergency_button.png'
 import EmergencySymbolLarge from '../../../assets/emergency_button_large.png'
@@ -18,6 +19,7 @@ interface TripParams {
 }
 
 export function Trip() {
+  const history = useHistory()
   const { destiny } = useParams<TripParams>()
 
   const [openMenu, setOpenMenu] = useState(false)
@@ -48,7 +50,9 @@ export function Trip() {
 
   function handleStopButtonClick() {}
 
-  function handleFinishTripButtonClick() {}
+  function handleFinishTripButtonClick() {
+    history.push(Paths.FINISHED_TRIP)
+  }
 
   function handleHelperClick() {
     setShowHelpModal(true)
@@ -182,7 +186,9 @@ export function Trip() {
             <p>1.791 KM</p>
           </div>
         </div>
-        <CRButton className="FinishTripButton" onClick={() => { console.log('teste')}}>Finalizar viagem</CRButton>
+        <CRButton className="FinishTripButton" onClick={handleFinishTripButtonClick}>
+          Finalizar viagem
+        </CRButton>
         {renderHelperButton()}
       </>
     )
