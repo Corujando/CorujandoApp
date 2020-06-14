@@ -26,4 +26,19 @@ export class TripService extends BaseService {
     }
     trip.ref.set(changeData, { merge: true })
   }
+
+  async getWhereEqualToUserId(userId: string): Promise<Trip[]> {
+    const queryResult = await this.getWhereEqualTo('userId', userId)
+
+    const docs = queryResult.docs
+
+    const trips = docs.map(doc => (
+      {
+        ...doc.data(),
+        id: doc.id
+      } as Trip
+    ))
+
+    return trips
+  }
 }

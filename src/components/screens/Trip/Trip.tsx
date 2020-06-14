@@ -78,6 +78,7 @@ export function Trip() {
       initialLocation: new firebase.firestore.GeoPoint(location!!.lat(), location!!.lng()),
       status: Status.PAUSED,
       userId: new UserService().getLoggedUserId()!!,
+      destiny: destiny,
     }
 
     tripId = (await tripService.add(trip)) as string

@@ -33,4 +33,19 @@ export class BreakService extends BaseService {
     }
     return this.addToCollection(breakModel)
   }
+
+  public async getWhereEqualToTripId(tripId: string): Promise<Break[]> {
+    const queryResult = await this.getWhereEqualTo('tripId', tripId)
+
+    const docs = queryResult.docs
+
+    const breaks = docs.map(doc => (
+      {
+        ...doc.data(),
+        id: doc.id
+      } as Break
+    ))
+
+    return breaks
+  }
 }

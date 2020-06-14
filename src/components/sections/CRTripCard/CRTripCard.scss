@@ -7,7 +7,7 @@
 }
 
 .MuiExpansionPanel-root.Mui-expanded {
-  margin: 0 !important;
+  margin: 10px !important;
 }
 
 .MuiPaper-rounded {
@@ -29,4 +29,12 @@
 
 .MuiExpansionPanelSummary-content {
   margin: 5px 0px !important;
+}
+
+.TripCardBadges {
+  display: flex;
+  flex-direction: row;
+  div {
+    margin-right: 5px;
+  }
 }
