@@ -1,6 +1,6 @@
-import { Coords } from 'google-map-react'
 import React, { useEffect } from 'react'
 import icon from '../../../assets/icone.png'
+import { googleService } from '../../../services/googleService'
 
 export type MarkerComponent = (props: Marker) => JSX.Element
 
@@ -11,53 +11,116 @@ export interface Marker {
   style?: Partial<CSSStyleDeclaration>
 }
 
-const getMapBounds = (maps: any, places: Coords[]): any => {
-  const bounds = new maps.LatLngBounds()
-  places.forEach(place => {
-    bounds.extend(new maps.LatLng(place.lat, place.lng))
-  })
-  return bounds
-}
-
-const bindResizeListener = (map: any, maps: any, bounds: any) => {
-  maps.event.addDomListenerOnce(map, 'idle', () => {
-    maps.event.addDomListener(window, 'resize', () => {
-      map.fitBounds(bounds)
-    })
-  })
-}
-
-const apiIsLoaded = (map: any, maps: any, places: Coords[] | undefined) => {
-  if (!places || !places.length) return
-  const bounds = getMapBounds(maps, places)
-  map.fitBounds(bounds)
-  bindResizeListener(map, maps, bounds)
-}
-
 interface CRMapProps {
-  center?: Coords
+  center?: google.maps.LatLng
   zoom?: number
   place: google.maps.LatLng
+  nightMode?: boolean
 }
 
 let map: google.maps.Map<HTMLElement>
-let marker: google.maps.Marker
+const nightModeStyles: google.maps.MapTypeStyle[] = [
+  { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+  { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
+  { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
+  {
+    featureType: 'administrative.locality',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#d59563' }],
+  },
+  {
+    featureType: 'poi',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#d59563' }],
+  },
+  {
+    featureType: 'poi.park',
+    elementType: 'geometry',
+    stylers: [{ color: '#263c3f' }],
+  },
+  {
+    featureType: 'poi.park',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#6b9a76' }],
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: [{ color: '#38414e' }],
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#212a37' }],
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#9ca5b3' }],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry',
+    stylers: [{ color: '#746855' }],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#1f2835' }],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#f3d19c' }],
+  },
+  {
+    featureType: 'transit',
+    elementType: 'geometry',
+    stylers: [{ color: '#2f3948' }],
+  },
+  {
+    featureType: 'transit.station',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#d59563' }],
+  },
+  {
+    featureType: 'water',
+    elementType: 'geometry',
+    stylers: [{ color: '#17263c' }],
+  },
+  {
+    featureType: 'water',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#515c6d' }],
+  },
+  {
+    featureType: 'water',
+    elementType: 'labels.text.stroke',
+    stylers: [{ color: '#17263c' }],
+  },
+]
 
-export function CRMap({ center, zoom, place }: CRMapProps) {
+export function CRMap({ center, zoom, place, nightMode }: CRMapProps) {
   useEffect(initMap)
 
   function initMap() {
     const defaultCenter = new google.maps.LatLng(-30.056, -51.1622)
-    map = new google.maps.Map(document.getElementById('map')!!, {
-      center: center || defaultCenter,
+    const mapProps: google.maps.MapOptions = {
+      center: center || place || defaultCenter,
       zoom: zoom || 15,
-    })
+      streetViewControl: false,
+      zoomControl: false,
+    }
 
+    if (nightMode) mapProps.styles = nightModeStyles
+    map = new google.maps.Map(document.getElementById('map')!!, mapProps)
+    googleService.setMap(map)
     createMarker()
   }
 
   function createMarker() {
-    marker = new google.maps.Marker({
+    // eslint-disable-next-line
+    const marker = new google.maps.Marker({
       map,
       position: place,
       icon,
@@ -65,7 +128,7 @@ export function CRMap({ center, zoom, place }: CRMapProps) {
   }
 
   return (
-    <div style={{ height: '100vh', width: '100%' }}>
+    <div style={{ height: '100%', width: '100%' }}>
       <div style={{ height: '100%' }} id="map" />
     </div>
   )

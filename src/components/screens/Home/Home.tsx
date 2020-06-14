@@ -1,6 +1,6 @@
+import React from 'react'
 import { Avatar } from '@material-ui/core'
 import { FirebaseAuthConsumer } from '@react-firebase/auth'
-import React from 'react'
 import { Redirect, useHistory } from 'react-router-dom'
 import { Paths } from '../../../config/Paths'
 import { CRButton } from '../../generics/CRButton/CRButton'
