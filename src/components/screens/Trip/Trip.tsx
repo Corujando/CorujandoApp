@@ -6,12 +6,12 @@ import EmergencySymbol from '../../../assets/emergency_button.png'
 import EmergencySymbolLarge from '../../../assets/emergency_button_large.png'
 import jojoScared from '../../../assets/jojo-assustado.png'
 import MenuButton from '../../../assets/open_menu.png'
+import { googleService } from '../../../services/googleService'
 import { CRButton } from '../../generics/CRButton/CRButton'
 import { CRMap } from '../../generics/CRMap/CRMap'
 import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
-
-import './Trip.scss'
 import { Timer } from '../../sections'
+import './Trip.scss'
 
 interface TripParams {
   destiny: string
@@ -54,7 +54,10 @@ export function Trip() {
         subTitle="Se sentindo mal?"
         titlePrimaryButton="Rota para unidade de atendimento mais próxima"
         titleSecondaryButton="Fechar"
-        onClickPrimaryButton={() => {}}
+        onClickPrimaryButton={() => {
+          googleService.createRouteForClosestHospital()
+          setShowHelpModal(false)
+        }}
         onClickSecondaryButton={() => setShowHelpModal(false)}
       />
     )
