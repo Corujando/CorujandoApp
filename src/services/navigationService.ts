@@ -12,15 +12,18 @@ class NavigationService {
     })
   }
 
-  public saveUserDestiny(geocoded: google.maps.GeocoderResult) {
+  public saveUserDestiny(geocoded: google.maps.GeocoderResult, text: string) {
+    localStorage.setItem('destinyText', text)
     localStorage.setItem('destiny', JSON.stringify(geocoded.geometry.location))
   }
 
   public getUserDestiny(): Coords | null {
     const fromLocalStorage = localStorage.getItem('destiny') || null
-    const localWindow = window as any
-    localWindow.abc = fromLocalStorage
     return fromLocalStorage ? (JSON.parse(fromLocalStorage) as Coords) : null
+  }
+
+  public getUserDestinyText() {
+    return localStorage.getItem('destinyText')
   }
 
   public getUserPosition(): google.maps.LatLng | null {

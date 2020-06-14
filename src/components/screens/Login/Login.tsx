@@ -20,8 +20,8 @@ export function Login() {
     return (
       <>
         <p id={`${id}Content`} className="initial-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam montes a dictumst
-          habitasse.
+          Mapeie seus horários de parada. Veja como pequenas mudanças podem ajudar sua saúde.
+          Cuide-se. Mantenha-se sempre ouvindo.
         </p>
 
         <CRGoogleLoginButton id={`${id}ContentButton`} className="Initial__button" />

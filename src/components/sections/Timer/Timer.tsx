@@ -12,7 +12,7 @@ export interface TimerHook {
 interface TimerProps {
   initialTime?: number
   hooks?: TimerHook[]
-  onPauseClick: () => void
+  onPauseClick: (time: number) => void
   onPlayClick: () => void
 }
 
@@ -26,7 +26,7 @@ export function Timer({ initialTime, hooks, onPlayClick, onPauseClick }: TimerPr
     if (newValue) {
       onPlayClick()
     } else {
-      onPauseClick()
+      onPauseClick(time)
     }
   }
 

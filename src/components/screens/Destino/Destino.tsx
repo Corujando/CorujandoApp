@@ -21,8 +21,9 @@ export function Destino() {
   ): void {
     setInputValue(prediction.description)
     const uf = geocoded.address_components.find(c => c.types.includes(UF_GOOGLE_ID))!!.short_name
-    setStrippedText(`${prediction.structured_formatting.main_text} - ${uf}`)
-    navigationService.saveUserDestiny(geocoded)
+    const text = `${prediction.structured_formatting.main_text} - ${uf}`
+    setStrippedText(text)
+    navigationService.saveUserDestiny(geocoded, text)
   }
 
   function startTrip() {

@@ -1,64 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Badges.scss';
 
 import { CRFooter } from '../../generics/CRFooter/CRFooter';
 import { Badge } from '../../generics/Badge/Badge';
 
-import src from '../../../assets/badge-1.png'
 import { Card } from '../../generics/Card/Card';
 import { Badge as BadgeModel } from '../../../model/badge';
 
+import { BadgeService } from '../../../services/badge.service';
+import { UserService } from '../../../services/userService';
+
 export const BadgeScreen = () => {
+    const badgeService = new BadgeService();
+    const userService = new UserService();
+
+    useEffect(() => {
+        try {
+            loadBadges();
+        } catch (error) {
+        }
+    }, [])
+
+    const [badges, setBadges] = useState([] as BadgeModel[]);
+    const [userBadges, setUserbadges] = useState([] as string[]);
+
+    const loadBadges = async () => {
+        const response = await badgeService.getAllBadges();
+        if (response) {
+            setBadges(response);
+        }
+
+        const userBadgesResponse = await userService.getUsersBadges();
+        if (userBadgesResponse) {
+            setUserbadges(userBadgesResponse);
+        }
+    }
 
     const renderItems = () => {
 
-        // TODO: load user badges and all badges from firebase
-        const user = {
-            badges: ['1', '3', '4', '6', '7', '8']
-        }
-
-        const badges: BadgeModel[] = [
-            {
-                id: '1',
-                description: 'Fez sua primeira viagem',
-                title: 'AAAAAAA',
-                imageUrl: src
-            },
-            {
-                id: '2',
-                description: 'Fez sua primeira viagem',
-                title: 'AAAAAAA',
-                imageUrl: src
-            },
-            {
-                id: '4',
-                description: 'Fez sua primeira viagem',
-                title: 'AAAAAAA',
-                imageUrl: src
-            },
-            {
-                id: '5',
-                description: 'Fez sua primeira viagem',
-                title: 'AAAAAAA',
-                imageUrl: src
-            },
-            {
-                id: '6',
-                description: 'Fez sua primeira viagem',
-                title: 'AAAAAAA',
-                imageUrl: src
-            },
-        ];
-
-        if (!badges || !badges.length) {
-            return (
-                <span className="no-badges-title">Estamos trabalhando para criar novas badges para você ;)</span>
-            )
-        }
-
-        return badges.map((badge) => (
+        return badges.map((badge, key) => (
             <>
-                <div className={user.badges.includes(badge.id, 0) ? 'card-item' : `card-item locked`}>
+                <div key={key} className={userBadges.includes(badge.id, 0) ? 'card-item' : `card-item locked`}>
                     <Badge imageSource={badge.imageUrl} />
                     <div className="card-item-info">
                         <span className="item-title">{badge.title}</span>

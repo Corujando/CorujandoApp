@@ -34,6 +34,7 @@ function getHour(): number {
 
 interface TripParams {
   destiny: string
+  time?: string
 }
 
 let tripId: string | undefined
@@ -42,7 +43,7 @@ export function Trip() {
   const tripService = new TripService()
   const breakService = new BreakService()
   const history = useHistory()
-  const { destiny } = useParams<TripParams>()
+  const { destiny, time } = useParams<TripParams>()
 
   const [openMenu, setOpenMenu] = useState(false)
   const [hour, setHour] = useState(getHour())
@@ -163,7 +164,7 @@ export function Trip() {
         titlePrimaryButton="Fazer parada"
         titleSecondaryButton="Lembrar na próxima parada"
         onClickPrimaryButton={() => {
-          onPauseClicked()
+          onPauseClicked(Number(time))
           setShowRestModal(false)
         }}
         onClickSecondaryButton={() => setShowRestModal(false)}
@@ -268,11 +269,12 @@ export function Trip() {
     breakService.finishInProgressBreak(tripId!!)
   }
 
-  async function onPauseClicked() {
+  async function onPauseClicked(time: number) {
     tripService.setStatusPaused(tripId!!)
     navigationService.saveCurrentLocation(location => {
       breakService.saveNewBreak(tripId!!, location!!)
     })
+    history.push(Paths.PAUSED_TRIP + '/' + time)
   }
 
   function renderTimer(): JSX.Element {
@@ -285,7 +287,7 @@ export function Trip() {
         />
         <div className="TripTimerData">
           <Timer
-            initialTime={18290}
+            initialTime={Number(time)}
             hooks={getTimerHooks()}
             onPlayClick={onPlayClicked}
             onPauseClick={onPauseClicked}
