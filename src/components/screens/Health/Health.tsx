@@ -28,8 +28,8 @@ export function Health() {
         return (
             mock.map((value, key) => (
                 <div className='Article'>
-                    <hr/>
-                    <Link to='/article' className='Link'>
+                    <hr className='Line'/>
+                    <div className='Link'>
                         <div className='Content'>
                             <img className='Image' src={value.imageUrl} alt=''/>
                             <div className='Write'>
@@ -37,7 +37,7 @@ export function Health() {
                                 <h6 className='SubTitle'>{value.subtitle}</h6>
                             </div>
                         </div>
-                    </Link>
+                    </div>
                 </div>
         )))
     }

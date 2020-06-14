@@ -27,6 +27,11 @@
         .Article {
             width: 100%;
 
+            .Line {
+                color: #56585A;
+                width: 100%;
+            }
+
             .Link {
                 text-decoration: none;
 
@@ -51,7 +56,7 @@
                         .SubTitle {
                             color: #56585A;
                             font-size: 12px;
-                            margin-top: -20px;
+                            margin-top: -5px;
                         }
                     }
                 }

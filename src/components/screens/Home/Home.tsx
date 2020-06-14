@@ -15,7 +15,9 @@ export function Home() {
     return Object.keys(firebase).length !== 0
   }
 
-  function handleHealthClick() {}
+  function handleHealthClick() {
+    history.push(Paths.HEALTH)
+  }
 
   function handleHistoryClick() {}
 

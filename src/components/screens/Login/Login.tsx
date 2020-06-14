@@ -5,8 +5,6 @@ import CRGoogleLoginButton from '../../generics/CRGoogleLoginButton/CRGoogleLogi
 import { CRLogo } from '../../generics/CRLogo/CRLogo'
 import './Login.scss'
 
-import { Article } from '../Article/Article'
-
 export function Login() {
   const [id, setId] = useState('')
 
@@ -32,21 +30,20 @@ export function Login() {
   load()
 
   return (
-    // <FirebaseAuthConsumer>
-    //   {({ isSignedIn }) => {
-    //     if (isSignedIn) {
-    //       return <Redirect to="/" />
-    //     }
-    //     return (
-    //       <div className="Login">
-    //         <div className="Login__content">
-    //           <CRLogo className="Login__Logo" id={id} />
-    //           {renderEverything()}
-    //         </div>
-    //       </div>
-    //     )
-    //   }}
-    // </FirebaseAuthConsumer>
-    <Article/>
+    <FirebaseAuthConsumer>
+      {({ isSignedIn }) => {
+        if (isSignedIn) {
+          return <Redirect to="/" />
+        }
+        return (
+          <div className="Login">
+            <div className="Login__content">
+              <CRLogo className="Login__Logo" id={id} />
+              {renderEverything()}
+            </div>
+          </div>
+        )
+      }}
+    </FirebaseAuthConsumer>
   )
 }
