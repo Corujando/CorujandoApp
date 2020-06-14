@@ -3,7 +3,6 @@ import './Timer.scss'
 import { Fab } from '@material-ui/core'
 import { CRButton } from '../../generics/CRButton/CRButton'
 
-
 export const Timer = () => {
   const [time, setTime] = useState(0)
   const [isActive, setIsActive] = useState(false)
