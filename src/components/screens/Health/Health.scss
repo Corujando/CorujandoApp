@@ -1,16 +1,50 @@
-@import "../../../App.scss";
+@import '../../../App.scss';
 
 .Health {
-    @extend .screen;
-    flex-direction: column;
+  @extend .screen;
+  flex-direction: column;
 
-    .Image {
-        height: 70px;
-        width: 70px;
-        border-radius: 50%;
-    }
+  .Image {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+  }
 
-    a {
-        text-decoration: none;
+  a {
+    text-decoration: none;
+  }
+
+  .model-popup {
+    .azul {
+      color: $primary-color;
+      font-weight: bold;
     }
+    .CRPopUp {
+      border-radius: 10px;
+      padding: 16px 20px;
+      padding-bottom: 0;
+    }
+    .modal-popup_content_title_text {
+      flex: 1;
+      font-size: 24px;
+    }
+    .modal-popup_content_principal {
+      height: 75%;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    p {
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+    }
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
 }
