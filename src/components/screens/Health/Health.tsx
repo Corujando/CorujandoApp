@@ -1,6 +1,7 @@
 import React from 'react'
 import './Health.scss'
 import logo from '../../../assets/jojo-horizontal.png'
+import { Link } from 'react-router-dom';
 
 export function Health() {
 
@@ -24,13 +25,15 @@ export function Health() {
             mock.map((value, key) => (
                 <div className='Article'>
                     <hr/>
-                    <div className='Content'>
-                        <img className='Image' src={value.imageUrl} alt=''/>
-                        <div className='Write'>
-                            <h4 className='Title'>{value.title}</h4>
-                            <h6 className='SubTitle'>{value.subtitle}</h6>
+                    <Link to='/' className='Link'> 
+                        <div className='Content'>
+                            <img className='Image' src={value.imageUrl} alt=''/>
+                            <div className='Write'>
+                                <h4 className='Title'>{value.title}</h4>
+                                <h6 className='SubTitle'>{value.subtitle}</h6>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
         )))
     }
