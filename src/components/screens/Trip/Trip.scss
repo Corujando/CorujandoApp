@@ -5,6 +5,29 @@
   height: 100vh;
   background: #274798;
 
+  .FloatingButton {
+    position: absolute !important;
+    bottom: 150px;
+    right: 30px;
+  }
+
+  .model-popup {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .CRPopUp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40%;
+    }
+  }
+
   .TripMap {
     height: calc(100vh - 80px);
     margin-bottom: 50px;
@@ -114,10 +137,4 @@
       }
     }
   }
-}
-
-.FloatingButton {
-  position: absolute !important;
-  bottom: 150px;
-  right: 30px;
 }

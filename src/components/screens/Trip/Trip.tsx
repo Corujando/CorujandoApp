@@ -1,13 +1,15 @@
 import { Fab } from '@material-ui/core'
-import { InfoOutlined } from '@material-ui/icons'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import CloseButton from '../../../assets/close_menu.png'
 import EmergencySymbol from '../../../assets/emergency_button.png'
 import EmergencySymbolLarge from '../../../assets/emergency_button_large.png'
+import jojoScared from '../../../assets/jojo-assustado.png'
 import MenuButton from '../../../assets/open_menu.png'
 import { CRButton } from '../../generics/CRButton/CRButton'
 import { CRMap } from '../../generics/CRMap/CRMap'
+import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
+
 import './Trip.scss'
 
 interface TripParams {
@@ -18,6 +20,7 @@ export function Trip() {
   const { destiny } = useParams<TripParams>()
 
   const [openMenu, setOpenMenu] = useState(false)
+  const [showHelpModal, setShowHelpModal] = useState(false)
 
   function handleCloseMenuClick() {
     setOpenMenu(false)
@@ -35,9 +38,24 @@ export function Trip() {
 
   function renderFloatingButton() {
     return (
-      <Fab className="FloatingButton" onClick={() => {}}>
+      <Fab className="FloatingButton" onClick={() => setShowHelpModal(true)}>
         <img src={EmergencySymbolLarge} alt="Botão de Emergência" />
       </Fab>
+    )
+  }
+
+  function renderHelpModal() {
+    return (
+      <CRPopUp
+        faded={true}
+        image={jojoScared}
+        title="Precisa de ajuda?"
+        subTitle="Se sentindo mal?"
+        titlePrimaryButton="Rota para unidade de atendimento mais próxima"
+        titleSecondaryButton="Fechar"
+        onClickPrimaryButton={() => {}}
+        onClickSecondaryButton={() => setShowHelpModal(false)}
+      />
     )
   }
 
@@ -109,6 +127,7 @@ export function Trip() {
       <div className="TripHeader">{renderHeader()}</div>
       <div className="TripMap">{renderMap()}</div>
       {renderFloatingButton()}
+      {showHelpModal && renderHelpModal()}
       {openMenu && <div className="TripMenu">{renderMenu()}</div>}
     </div>
   )
