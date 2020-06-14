@@ -4,9 +4,11 @@ import { Redirect } from 'react-router'
 import CRGoogleLoginButton from '../../generics/CRGoogleLoginButton/CRGoogleLoginButton'
 import { CRLogo } from '../../generics/CRLogo/CRLogo'
 import './Login.scss'
+import { UserService } from '../../../services/user.service'
 
 export function Login() {
   const [id, setId] = useState('')
+  const userService = new UserService()
 
   function load() {
     setTimeout(() => {
@@ -29,10 +31,19 @@ export function Login() {
 
   load()
 
+  async function saveUser(user: any) {
+    const userFromDb = await userService.get(user!!.email)
+    debugger
+    if (!userFromDb) {
+      userService.add(user.displayName, user.email, user.photoURL)
+    }
+  }
+
   return (
     <FirebaseAuthConsumer>
-      {({ isSignedIn }) => {
+      {({ isSignedIn, user }) => {
         if (isSignedIn) {
+          saveUser(user)
           return <Redirect to="/" />
         }
         return (
