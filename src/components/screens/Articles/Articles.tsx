@@ -4,6 +4,7 @@ import logo from '../../../assets/jojo-blue-horizontal.png'
 import { useParams } from 'react-router'
 import { Article } from '../../../model/article'
 import { ArticleService } from '../../../services/article.service' 
+import ReactMarkdown from 'react-markdown'
 
 interface ArticleProps {
     id: string
@@ -38,7 +39,7 @@ export function Articles() {
             <img className='Image' src={article.imageUrl} alt='' />
             <h2 className='Title'>{article.title}</h2>
             <h4 className='SubTitle'>{article.subtitle}</h4>
-            <p className='SubTitle'>{article.text}</p>
+            <ReactMarkdown source={article.text} className='Text'/>
             <h4 className='SubTitle'>Fonte:
                 <a className='Link' href={article.reference}>{article.title}</a>
             </h4>

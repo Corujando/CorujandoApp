@@ -13,18 +13,27 @@
         color: #274798;
         font-family: Montserrat Alternates;
         font-size: 30px;
-        margin-left: 10px;
-        margin-bottom: 5px;
+        margin: 20px;
+        margin-bottom: -15px;
     }
 
     .SubTitle {
         color: #56585A;
         font-size: 12px;
         margin-left: 10px;
+        margin: 25px;
 
         .Link {
             color: #56585A;
         }
+    }
+
+    .Text {
+        color: #56585A;
+        font-size: 12px;
+        margin-left: 10px;
+        margin: 25px;
+        margin-top: 0px;
     }
 
     .Icon {
