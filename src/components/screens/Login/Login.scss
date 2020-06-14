@@ -1,8 +1,7 @@
-.Initial {
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(29.67deg, #3787b7 -3.31%, #274798 87.77%);
-  display: flex;
+@import '../../../App.scss';
+
+.Login {
+  @extend .screen;
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -40,15 +39,15 @@
 #logo {
   top: 200px;
   position: relative;
-  animation: floatBubble .5s normal forwards ease-out;
+  animation: floatBubble 0.5s normal forwards ease-out;
 }
 
 #logoContent {
-  animation: try .5s normal forwards ease-out;
+  animation: try 0.5s normal forwards ease-out;
 }
 
 #logoContentButton {
-  animation: tryButton .5s normal forwards ease-out;
+  animation: tryButton 0.5s normal forwards ease-out;
 }
 
 @keyframes floatBubble {
