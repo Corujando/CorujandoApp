@@ -65,7 +65,7 @@ export function CRMap({ center, zoom, place }: CRMapProps) {
   }
 
   return (
-    <div style={{ height: '100vh', width: '100%' }}>
+    <div style={{ height: '100%', width: '100%' }}>
       <div style={{ height: '100%' }} id="map" />
     </div>
   )

@@ -6,6 +6,7 @@
   background: #274798;
 
   .TripMap {
+    height: calc(100vh - 80px);
     margin-bottom: 50px;
   }
 
@@ -26,6 +27,7 @@
         height: 22px;
         border: none;
         background: none;
+        outline: none;
       }
       .TripHeaderCloseMenuButton {
         margin-right: 20px;
@@ -33,6 +35,7 @@
         height: 20px;
         border: none;
         background: none;
+        outline: none;
       }
     }
     .TripHeaderLocation {
