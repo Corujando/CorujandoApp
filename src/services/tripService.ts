@@ -6,7 +6,6 @@ export class TripService extends BaseService {
   PATH = 'trip'
 
   async add(trip: Trip): Promise<String> {
-    console.log(trip)
     return this.addToCollection(trip).then(ref => ref.id)
   }
 
@@ -33,7 +32,12 @@ export class TripService extends BaseService {
 
     const docs = queryResult.docs
 
-    const trips = docs.map(doc => doc.data() as Trip)
+    const trips = docs.map(doc => (
+      {
+        ...doc.data(),
+        id: doc.id
+      } as Trip
+    ))
 
     return trips
   }

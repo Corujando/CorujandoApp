@@ -32,12 +32,11 @@ export function MyTrips() {
     const tripService = new TripService()
     const userId = new UserService().getLoggedUserId()
     if (userId) {
-      console.log(userId)
       tripService.getWhereEqualToUserId(userId).then(trips => {
         setTrips(trips)
       })
     }
-  })
+  }, [])
 
   return (
     <div className="MyTrips">

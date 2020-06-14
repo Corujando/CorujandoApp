@@ -9,12 +9,25 @@ import { ExpansionPanelSummary, ExpansionPanel } from "@material-ui/core"
 import AchievementMock from '../../../assets/achievement_coffee.png'
 import { Trip } from "../../../model/trip"
 import { Break } from '../../../model/break'
-import './CRTripCard.scss'
 import { TimeFormatter } from '../../../formatters/TimeFormatter'
+import { BreakService } from '../../../services/breakService'
+import { UserService } from '../../../services/userService'
+import { Badge } from '../../../model/badge'
+import './CRTripCard.scss'
 
 export function CRTripCard(props: Trip) {
 
   const [breaks, setBreaks] = useState([] as Break[])
+  const [badges, setBadges] = useState([] as Badge[])
+
+  useEffect(() => {
+    const breadkService = new BreakService()
+    if(props.id) {
+      breadkService.getWhereEqualToTripId(props.id).then(breaks => {
+        setBreaks(breaks)
+      })
+    }
+  }, [])
 
   return (
     <ExpansionPanel className="CRTripPainel">
@@ -53,11 +66,17 @@ export function CRTripCard(props: Trip) {
             Chegada:&nbsp;
             {TimeFormatter.getFormatedFullDate(props.finalTime)}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Conquistas ganhas:
-          </Typography>
-          <br />
-          <Avatar alt="Conquista" src={AchievementMock} />
+          {badges.length > 0 && (
+            <>
+              <Typography variant="body2" color="textSecondary" component="p">
+                Conquistas ganhas:
+              </Typography>
+              <br />
+              {badges.map(badge => (
+                <Avatar alt="Conquista" src={badge.imageUrl} />
+              ))}
+            </>
+          )}
         </CardContent>
       </div>
     </ExpansionPanel>

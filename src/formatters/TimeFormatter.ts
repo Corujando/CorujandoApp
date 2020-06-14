@@ -21,7 +21,7 @@ export class TimeFormatter {
 
   private static getFormattedDate = (date: Date): string => {
     return (
-      TimeFormatter.toStringZ(date.getDay()) +
+      TimeFormatter.toStringZ(date.getDate()) +
       '/' +
       TimeFormatter.toStringZ(date.getMonth()) +
       '/' +

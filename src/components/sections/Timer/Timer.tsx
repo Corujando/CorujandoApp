@@ -17,7 +17,7 @@ interface TimerProps {
 }
 
 export function Timer({ initialTime, hooks, onPlayClick, onPauseClick }: TimerProps) {
-  const [time, setTime] = useState(initialTime || 0)
+  const [time, setTime] = useState(initialTime || 19000)
   const [isActive, setIsActive] = useState(false)
 
   function toggle() {

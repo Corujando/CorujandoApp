@@ -80,8 +80,6 @@ export function Trip() {
       destiny: destiny,
     }
 
-    console.log(trip)
-
     tripId = (await tripService.add(trip)) as string
   }
 
