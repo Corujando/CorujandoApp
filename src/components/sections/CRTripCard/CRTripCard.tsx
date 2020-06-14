@@ -10,42 +10,11 @@ import AchievementMock from '../../../assets/achievement_coffee.png'
 import { Trip } from "../../../model/trip"
 import { Break } from '../../../model/break'
 import './CRTripCard.scss'
+import { TimeFormatter } from '../../../formatters/TimeFormatter'
 
 export function CRTripCard(props: Trip) {
 
   const [breaks, setBreaks] = useState([] as Break[])
-
-  function toStringZ(value: number): string {
-    return String(value).padStart(2, '0')
-  }
-
-  function getFormattedDate(date: Date): string {
-    return (
-      toStringZ(date.getDay()) +
-      '/' +
-      toStringZ(date.getMonth()) +
-      '/' +
-      toStringZ(date.getFullYear())
-    )
-  }
-
-  function getFormattedDateFromTimestamp(timestamp?: firebase.firestore.Timestamp): string {
-    return timestamp ? getFormattedDate(timestamp.toDate()) : "--/--/--"
-  }
-
-  function getFormattedTime(date: Date): string {
-    return toStringZ(date.getHours()) + 'h'
-    +toStringZ(date.getMinutes())
-  }
-
-  function getFormatedTimeFromTimestamp(timestamp?: firebase.firestore.Timestamp): string {
-    return timestamp ? getFormattedTime(timestamp.toDate()) : '--h--'
-  }
-
-  function getFormatedFullDate(timestamp?: firebase.firestore.Timestamp): string {
-    return getFormattedDateFromTimestamp(props.finalTime)
-      + ' às ' + getFormatedTimeFromTimestamp(props.finalTime)
-  }
 
   return (
     <ExpansionPanel className="CRTripPainel">
@@ -57,9 +26,9 @@ export function CRTripCard(props: Trip) {
           subheader={
             <>
               <Typography variant="body2" color="textSecondary" component="p">
-                {getFormattedDateFromTimestamp(props.initialTime) +
+                {TimeFormatter.getFormattedDateFromTimestamp(props.initialTime) +
                   ' - ' +
-                  getFormattedDateFromTimestamp(props.finalTime)}
+                  TimeFormatter.getFormattedDateFromTimestamp(props.finalTime)}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
                 Duração: {props.time ? props.time : '--:--:--'}
@@ -72,17 +41,17 @@ export function CRTripCard(props: Trip) {
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             Início:&nbsp;
-            {getFormatedFullDate(props.initialTime)}
+            {TimeFormatter.getFormatedFullDate(props.initialTime)}
           </Typography>
           {breaks.map((breakData, index) => (
             <Typography key={index} variant="body2" color="textSecondary" component="p">
               Parada:&nbsp;
-              {getFormatedFullDate(breakData.initialTime)}
+              {TimeFormatter.getFormatedFullDate(breakData.initialTime)}
             </Typography>
           ))}
           <Typography variant="body2" color="textSecondary" component="p">
             Chegada:&nbsp;
-            {getFormatedFullDate(props.finalTime)}
+            {TimeFormatter.getFormatedFullDate(props.finalTime)}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Conquistas ganhas:
