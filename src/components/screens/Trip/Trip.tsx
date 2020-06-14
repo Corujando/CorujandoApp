@@ -18,8 +18,14 @@ import { Timer } from '../../sections'
 import './Trip.scss'
 import { TimerHook } from '../../sections/Timer/Timer'
 
+const NIGHT_TIME = 22
+
 function isNightTime() {
-  return Number(new Date().toTimeString().substring(0, 2)) >= 22
+  return getHour() >= NIGHT_TIME || getHour() < 6
+}
+
+function getHour(): number {
+  return Number(new Date().toTimeString().substring(0, 2))
 }
 
 interface TripParams {
@@ -31,6 +37,7 @@ export function Trip() {
   const { destiny } = useParams<TripParams>()
 
   const [openMenu, setOpenMenu] = useState(false)
+  const [hour, setHour] = useState(getHour())
   const [openTimerMenu, setOpenTimerMenu] = useState(false)
   const [showHelpModal, setShowHelpModal] = useState(false)
   const [showRestModal, setShowRestModal] = useState(false)
@@ -39,6 +46,14 @@ export function Trip() {
 
   useEffect(() => {
     navigationService.saveCurrentLocation(location => setUserPosition(location))
+  }, [])
+
+  useEffect(() => {
+    let interval: any
+    interval = setInterval(() => {
+      if (getHour() !== hour) setHour(getHour())
+    }, 10000)
+    return () => clearInterval(interval)
   }, [])
 
   function handleCloseMenuClick() {
@@ -143,7 +158,7 @@ export function Trip() {
   }
 
   function renderMap() {
-    return userPosition && <CRMap nightMode zoom={16} place={userPosition} />
+    return userPosition && <CRMap nightMode={isNightTime()} zoom={16} place={userPosition} />
   }
 
   function renderHeader(): JSX.Element {
