@@ -4,11 +4,12 @@
   width: 100vw;
   height: 100vh;
   background: #274798;
+  overflow: hidden;
 
   .FloatingButton {
     position: absolute !important;
-    bottom: 150px;
-    right: 30px;
+    bottom: 175px;
+    right: 20px;
   }
 
   .model-popup {
@@ -142,10 +143,61 @@
     position: absolute;
     height: 130px;
     background-color: white;
-    width: calc(100% - 20px);
+    width: 100%;
     border-radius: 20px 20px 0px 0px;
     box-shadow: 0px 0px 10px rgba(53, 56, 58, 0.25);
     bottom: 0;
-    padding: 10px;
+
+    .TripTimerData {
+      padding: 0;
+      border: none;
+      background: none;
+      outline: none;
+      height: calc(100% - 30px);
+      width: calc(100% - 20px);
+      padding: 20px 10px 10px 10px;
+      .TripTimerInfo {
+        padding: 30px 20px 0px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-style: normal;
+        font-family: Segoe UI;
+        line-height: 8px;
+        font-size: 16px;
+        .TripInfoTitle {
+          width: 60%;
+          display: flex;
+          flex-direction: column;
+          font-weight: normal;
+        }
+        .TripInfoValue {
+          width: 40%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .TripTimerOpenButton {
+      position: absolute;
+      bottom: 0px;
+      background: none;
+      outline: none;
+      border: none;
+      padding: 0;
+      height: 130px;
+      width: 100%;
+    }
+
+    &.Open {
+      height: 400px;
+
+      .TripTimerOpenButton {
+        height: 400px;
+      }
+    }
   }
 }

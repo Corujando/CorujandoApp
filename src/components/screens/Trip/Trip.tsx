@@ -21,6 +21,7 @@ export function Trip() {
   const { destiny } = useParams<TripParams>()
 
   const [openMenu, setOpenMenu] = useState(false)
+  const [openTimerMenu, setOpenTimerMenu] = useState(false)
   const [showHelpModal, setShowHelpModal] = useState(false)
 
   function handleCloseMenuClick() {
@@ -31,11 +32,24 @@ export function Trip() {
     setOpenMenu(true)
   }
 
+  function handleTripTimerButtonClick() {
+    setOpenTimerMenu(!openTimerMenu)
+  }
+
   function handleHealthClick() {}
 
   function handleHistoryClick() {}
 
   function handleAchievementsClick() {}
+
+  function renderHelperButton(): JSX.Element {
+    return (
+      <button type="submit" className="TripHelp" onClick={handleHistoryClick}>
+        <img src={EmergencySymbol} alt="Botão de Emergência" />
+        <p className="TripHelpText">Preciso de Ajuda</p>
+      </button>
+    )
+  }
 
   function renderFloatingButton() {
     return (
@@ -118,10 +132,7 @@ export function Trip() {
             Finalizar viagem
           </CRButton>
         </div>
-        <button type="submit" className="TripHelp" onClick={handleHistoryClick}>
-          <img src={EmergencySymbol} alt="Botão de Emergência" />
-          <p className="TripHelpText">Preciso de Ajuda</p>
-        </button>
+        {renderHelperButton()}
       </>
     )
   }
@@ -129,7 +140,32 @@ export function Trip() {
   function renderTimer(): JSX.Element {
     return (
       <>
-        <Timer />
+        <button className="TripTimerOpenButton" onClick={handleTripTimerButtonClick} />
+        <div className="TripTimerData">
+          <Timer />
+          {openTimerMenu && renderTimerMenuInfo()}
+        </div>
+      </>
+    )
+  }
+
+  function renderTimerMenuInfo(): JSX.Element {
+    return (
+      <>
+        <div className="TripTimerInfo">
+          <div className="TripInfoTitle">
+            <p>Total de paradas</p>
+            <p>Tempo desde a última parada</p>
+            <p>Total do trajeto (em KM)</p>
+          </div>
+          <div className="TripInfoValue">
+            <p>0 paradas</p>
+            <p>00:00:00</p>
+            <p>1.791 KM</p>
+          </div>
+        </div>
+        <CRButton onClick={() => {}}>Finalizar viagem</CRButton>
+        {renderHelperButton()}
       </>
     )
   }
@@ -141,7 +177,7 @@ export function Trip() {
       {renderFloatingButton()}
       {showHelpModal && renderHelpModal()}
       {openMenu && <div className="TripMenu">{renderMenu()}</div>}
-      <div className="TripTimer">{renderTimer()}</div>
+      <div className={openTimerMenu ? 'TripTimer Open' : 'TripTimer'}>{renderTimer()}</div>
     </div>
   )
 }

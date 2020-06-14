@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './Timer.scss'
-import { CRButton } from '../../generics/CRButton/CRButton'
 import { Fab } from '@material-ui/core'
+import { CRButton } from '../../generics/CRButton/CRButton'
 
-export interface TimerProps {}
 
 export const Timer = () => {
   const [time, setTime] = useState(0)

@@ -5,7 +5,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px;
 
     .timer-text {
       margin-left: 15px;
@@ -17,6 +16,7 @@
         font-style: normal;
         font-weight: normal;
         line-height: 21px;
+        text-align: left;
       }
 
       .time {
