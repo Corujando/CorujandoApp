@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { Paths } from '../../../config/Paths'
 import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
-
-import './Destino.scss'
 import { CRPlacesInput } from '../../generics/CRPlacesInput/CRPlacesInput'
 import { CRFooter } from '../../generics/CRFooter/CRFooter'
+import './Destino.scss'
 
 const UF_GOOGLE_ID = 'administrative_area_level_1'
 
 export function Destino() {
+  const history = useHistory()
+
   const [inputValue, setInputValue] = useState('')
   const [strippedText, setStrippedText] = useState(inputValue)
 
@@ -20,11 +23,15 @@ export function Destino() {
     setStrippedText(`${prediction.structured_formatting.main_text} - ${uf}`)
   }
 
+  function startTrip() {
+    history.push(Paths.TRIP_QUERY + inputValue)
+  }
+
   return (
     <div className="Destino">
       <CRPopUp
         title="Destino"
-        onClickSecondaryButton={() => {}}
+        onClickSecondaryButton={startTrip}
         titleSecondaryButton="Iniciar viagem"
         subTitle="Por favor, insira a cidade de destino">
         <div className="Destino__content">
