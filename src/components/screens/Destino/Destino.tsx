@@ -24,7 +24,7 @@ export function Destino() {
   }
 
   function startTrip() {
-    history.push(Paths.TRIP_QUERY + inputValue)
+    history.push(Paths.TRIP_QUERY + strippedText)
   }
 
   return (
