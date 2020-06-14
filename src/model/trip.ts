@@ -1,6 +1,6 @@
 import * as firebase from 'firebase'
 
-export enum TripStatus {
+export enum Status {
   FINISHED = 'FINISHED',
   PAUSED = 'PAUSED',
   IN_PROGRESS = 'IN_PROGRESS',
@@ -16,5 +16,5 @@ export interface Trip {
   finalTime?: firebase.firestore.Timestamp
   initialTime?: firebase.firestore.Timestamp
   time?: string // duracao
-  status: TripStatus
+  status: Status
 }
