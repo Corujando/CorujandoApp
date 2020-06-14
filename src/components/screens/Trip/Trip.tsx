@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import CloseButton from '../../../assets/close_menu.png'
 import EmergencySymbol from '../../../assets/emergency_button.png'
 import MenuButton from '../../../assets/open_menu.png'
@@ -6,11 +7,13 @@ import { CRButton } from '../../generics/CRButton/CRButton'
 import { CRMap } from '../../generics/CRMap/CRMap'
 import './Trip.scss'
 
-export interface TripProps {
-  location: string
+interface TripParams {
+  destiny: string
 }
 
-export function Trip(props: TripProps) {
+export function Trip() {
+  const { destiny } = useParams<TripParams>()
+
   const [openMenu, setOpenMenu] = useState(false)
 
   function handleCloseMenuClick() {
@@ -36,7 +39,7 @@ export function Trip(props: TripProps) {
       <>
         <div className="TripHeaderLocation">
           <div className="TripHeaderLocationTitle">Nosso destino é</div>
-          <div className="TripHeaderLocationName">{props.location}</div>
+          <div className="TripHeaderLocationName">{destiny}</div>
         </div>
         <div className="TripHeaderImageContainer">
           {openMenu ? (
