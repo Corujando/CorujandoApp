@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './FinishedTrip.scss'
 import { Badge } from '../../generics/Badge/Badge'
 import { BadgeProps } from '../../generics/Badge/Badge'
@@ -6,6 +6,8 @@ import { TimeFormatter, DistanceFormatter } from '../../../formatters'
 import { RouteComponentProps, StaticContext } from 'react-router'
 import { Link } from 'react-router-dom'
 import { Badge as BadgeModel } from '../../../model/badge'
+import { UserService } from '../../../services/userService'
+import { BadgeService } from '../../../services/badge.service'
 
 export interface FinishedTripProps {
   badges: BadgeModel[]
@@ -13,8 +15,23 @@ export interface FinishedTripProps {
   time: number
 }
 
-export const FinishedTrip = (props: RouteComponentProps<{}, StaticContext, FinishedTripProps>) => {
-  const { badges, totalDistance, time } = props.location.state
+export const FinishedTrip = () => {
+  const [badges, setBadges] = useState([] as BadgeModel[])
+  const [totalDistance, setTotalDistance] = useState(2062)
+  const [time, setTime] = useState(18910)
+
+  useEffect(() => {
+    const userService = new UserService()
+    const badgeService = new BadgeService()
+
+    userService.getUsersBadges().then(badgeIds => {
+      badgeService.getAllBadges().then(docs => {
+        const badges = docs as BadgeModel[]
+
+        setBadges(badges.filter(badge => badgeIds.includes(badge.id)))
+      })
+    })
+  }, [])
 
   const renderBadges = () => {
     return badges.map((badge: BadgeModel) => (
