@@ -5,6 +5,7 @@ import { CRFooter } from '../../generics/CRFooter/CRFooter';
 import { Badge } from '../../generics/Badge/Badge';
 
 import src from '../../../assets/badge-1.png'
+import { Card } from '../../generics/Card/Card';
 import { Badge as BadgeModel } from '../../../model/badge';
 
 export const BadgeScreen = () => {
@@ -71,13 +72,9 @@ export const BadgeScreen = () => {
 
     return (
         <div className="badge-screen">
-            <div className="card">
-                <h1 className="title">Minhas conquistas</h1>
-                <div className="divider"></div>
-                <div className="content">
-                    {renderItems()}
-                </div>
-            </div>
+            <Card title="Minhas Conquistas">
+                {renderItems()}
+            </Card>
             <CRFooter />
         </div>
     )
