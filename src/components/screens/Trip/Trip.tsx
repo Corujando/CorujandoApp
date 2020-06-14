@@ -84,7 +84,7 @@ export function Trip() {
   }
 
   function renderMap() {
-    return userPosition && <CRMap zoom={12} place={userPosition} />
+    return userPosition && <CRMap nightMode zoom={16} place={userPosition} />
   }
 
   function renderHeader(): JSX.Element {
