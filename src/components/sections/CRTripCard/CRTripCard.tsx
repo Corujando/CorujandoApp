@@ -35,11 +35,13 @@ export function CRTripCard(props: Trip) {
     const badgeService = new BadgeService()
 
     userService.getUsersBadges().then(badgeIds => {
-      badgeService.getAllBadges().then(docs => {
-        const badges = docs as Badge[]
+      if (badgeIds && badgeIds.length > 0) {
+        badgeService.getAllBadges().then(docs => {
+          const badges = docs as Badge[]
 
-        setBadges(badges.filter(badge => badgeIds.includes(badge.id)))
-      })
+          setBadges(badges.filter(badge => badgeIds.includes(badge.id)))
+        })
+      }
     })
   }, [])
 
