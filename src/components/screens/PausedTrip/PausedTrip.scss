@@ -1,0 +1,48 @@
+.PausedTrip {
+  background: linear-gradient(29.67deg, #3787b7 -3.31%, #274798 87.77%);
+  padding-top: 15px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .Title {
+    font-size: 40px;
+    color: white;
+    margin-right: 35%;
+    font-family: Montserrat Alternates;
+    margin-bottom: 10px;
+  }
+
+  .SubTitle {
+    font-size: 20px;
+    color: white;
+    margin-right: 5%;
+  }
+
+  .DistanceTitle {
+    font-size: 16px;
+    color: white;
+    margin-right: 25%;
+    margin-bottom: -15px;
+  }
+
+  .Distance {
+    font-size: 30px;
+    color: white;
+    margin-right: 60%;
+  }
+
+  .BackTripButton {
+    background-color: white;
+    color: #274798;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 30px;
+    border-color: #274798;
+    outline: none;
+    padding: 15px;
+    width: 90%;
+  }
+}
