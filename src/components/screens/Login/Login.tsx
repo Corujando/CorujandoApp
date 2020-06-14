@@ -5,8 +5,6 @@ import CRGoogleLoginButton from '../../generics/CRGoogleLoginButton/CRGoogleLogi
 import { CRLogo } from '../../generics/CRLogo/CRLogo'
 import './Login.scss'
 
-import { PausedTrip } from '../PausedTrip/PausedTrip'
-
 export function Login() {
   const [id, setId] = useState('')
 
@@ -32,23 +30,20 @@ export function Login() {
   load()
 
   return (
-    // <FirebaseAuthConsumer>
-    //   {({ isSignedIn }) => {
-    //     if (isSignedIn) {
-    //       return <Redirect to="/" />
-    //     }
-    //     return (
-    //       <div className="Initial">
-    //         <div className="Initial__content">
-    //           <CRLogo className="Initial__Logo" id={id} />
-    //           {renderEverything()}
-    //         </div>
-    //       </div>
-    //     )
-    //   }}
-    // </FirebaseAuthConsumer>
-    <PausedTrip
-    
-    />
+    <FirebaseAuthConsumer>
+      {({ isSignedIn }) => {
+        if (isSignedIn) {
+          return <Redirect to="/" />
+        }
+        return (
+          <div className="Initial">
+            <div className="Initial__content">
+              <CRLogo className="Initial__Logo" id={id} />
+              {renderEverything()}
+            </div>
+          </div>
+        )
+      }}
+    </FirebaseAuthConsumer>
   )
 }
