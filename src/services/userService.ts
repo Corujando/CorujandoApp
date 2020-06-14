@@ -27,6 +27,16 @@ export class UserService extends BaseService {
     return userId
   }
 
+  async getUsersBadges() {
+    const result = await this.getDocumentFromId(this.getLoggedUserId()!!)
+    const response = result.data();
+
+    if (response) {
+      return response.badges;
+    }
+    return [];
+  }
+
   getLoggedUserId(): string | null {
     return localStorage.getItem('loggedUser')
   }
