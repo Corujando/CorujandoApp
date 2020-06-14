@@ -33,7 +33,6 @@ export function Login() {
 
   async function saveUser(user: any) {
     const userFromDb = await userService.get(user!!.email)
-    debugger
     if (!userFromDb) {
       userService.add(user.displayName, user.email, user.photoURL)
     }
