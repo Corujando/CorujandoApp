@@ -1,0 +1,16 @@
+@import "../../../App.scss";
+
+.Health {
+    @extend .screen;
+    flex-direction: column;
+
+    .Image {
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+}

@@ -1,0 +1,28 @@
+.card-item {
+    padding: 10px;
+    display: flex;
+
+    &.locked {
+        filter: grayscale(100%);
+    }
+
+    .card-item-info {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+
+        .item-title {
+            font-family: Montserrat Alternates;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 20px;
+            color: #56585a;
+        }
+
+        .item-description {
+            font-size: 14px;
+            line-height: 17px;
+            color: #56585a;
+        }
+    }
+}

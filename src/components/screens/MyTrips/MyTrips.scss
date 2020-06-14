@@ -1,0 +1,21 @@
+.MyTrips {
+  background: linear-gradient(29.67deg, #3787b7 -3.31%, #274798 87.77%);
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .Title {
+    font-family: Montserrat Alternates;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+}

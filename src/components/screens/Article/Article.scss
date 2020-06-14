@@ -1,0 +1,41 @@
+.ArticleScreen {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 100vh;
+
+    .Image {
+        width: 100%;
+        height: 300px;
+    }
+
+    .Title {
+        color: #274798;
+        font-family: Montserrat Alternates;
+        font-size: 30px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+    }
+
+    .SubTitle {
+        color: #56585A;
+        font-size: 12px;
+        margin-left: 10px;
+
+        .Link {
+            color: #56585A;
+        }
+    }
+
+    .Icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .Logo {
+            width: 100px;
+            height: 30px;
+            margin: 5px;
+        }
+    }
+}
