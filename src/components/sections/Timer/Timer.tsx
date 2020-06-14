@@ -47,9 +47,11 @@ export const Timer = () => {
 
   return (
     <div className="timer">
-      <h2 className="title">Duração da viagem</h2>
       <div className="time-panel">
-        <h2 className="time">{getCurrentTime()}</h2>
+        <div className="timer-text">
+          <h2 className="title">Duração da viagem</h2>
+          <h2 className="time">{getCurrentTime()}</h2>
+        </div>
         <div className="circle-button">
           <CRButton text=" " className={isActive ? 'play active' : 'play'} onClick={toggle} />
         </div>

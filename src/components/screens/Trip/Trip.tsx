@@ -6,6 +6,7 @@ import MenuButton from '../../../assets/open_menu.png'
 import { CRButton } from '../../generics/CRButton/CRButton'
 import { CRMap } from '../../generics/CRMap/CRMap'
 import './Trip.scss'
+import { Timer } from '../../sections'
 
 interface TripParams {
   destiny: string
@@ -30,11 +31,11 @@ export function Trip() {
 
   function handleAchievementsClick() {}
 
-  function renderMap() {
+  function renderMap(): JSX.Element {
     return <CRMap zoom={12} place={new google.maps.LatLng({ lat: -30.056, lng: -51.1622 })} />
   }
 
-  function renderHeader() {
+  function renderHeader(): JSX.Element {
     return (
       <>
         <div className="TripHeaderLocation">
@@ -62,7 +63,7 @@ export function Trip() {
     )
   }
 
-  function renderMenu() {
+  function renderMenu(): JSX.Element {
     return (
       <>
         <div className="TripMenuOptions">
@@ -93,11 +94,20 @@ export function Trip() {
     )
   }
 
+  function renderTimer(): JSX.Element {
+    return (
+      <>
+        <Timer />
+      </>
+    )
+  }
+
   return (
     <div className="Trip">
       <div className="TripHeader">{renderHeader()}</div>
       <div className="TripMap">{renderMap()}</div>
       {openMenu && <div className="TripMenu">{renderMenu()}</div>}
+      <div className="TripTimer">{renderTimer()}</div>
     </div>
   )
 }
