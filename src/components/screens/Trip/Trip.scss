@@ -6,6 +6,20 @@
   background: #274798;
   overflow: hidden;
 
+  .PausaDescanso {
+    .CRPopUp {
+      height: 45% !important;
+
+      .modal-popup_content_title_text {
+        font-size: 24px;
+      }
+
+      .modal-popup_content_principal_sub-title {
+        font-size: 14px;
+      }
+    }
+  }
+
   .FloatingButton {
     position: absolute !important;
     bottom: 175px;
