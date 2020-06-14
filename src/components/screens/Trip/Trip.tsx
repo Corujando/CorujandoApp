@@ -6,6 +6,7 @@ import EmergencySymbol from '../../../assets/emergency_button.png'
 import EmergencySymbolLarge from '../../../assets/emergency_button_large.png'
 import jojoScared from '../../../assets/jojo-assustado.png'
 import jojoCoffee from '../../../assets/jojo-coffee.png'
+import jojoSleepy from '../../../assets/jojo-sleepy.png'
 import MenuButton from '../../../assets/open_menu.png'
 import { Paths } from '../../../config/Paths'
 import { googleService } from '../../../services/googleService'
@@ -16,6 +17,10 @@ import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
 import { Timer } from '../../sections'
 import './Trip.scss'
 import { TimerHook } from '../../sections/Timer/Timer'
+
+function isNightTime() {
+  return Number(new Date().toTimeString().substring(0, 2)) >= 22
+}
 
 interface TripParams {
   destiny: string
@@ -29,6 +34,7 @@ export function Trip() {
   const [openTimerMenu, setOpenTimerMenu] = useState(false)
   const [showHelpModal, setShowHelpModal] = useState(false)
   const [showRestModal, setShowRestModal] = useState(false)
+  const [showSleepModal, setShowSleepModal] = useState(false)
   const [userPosition, setUserPosition] = useState<UserPosition>(null)
 
   useEffect(() => {
@@ -120,6 +126,22 @@ export function Trip() {
     )
   }
 
+  function renderSleepModal() {
+    return (
+      <CRPopUp
+        faded
+        className="PausaDescanso"
+        image={jojoSleepy}
+        title="Pausa pro dormir?"
+        subTitle="Você está perto de completar 5h30 de viagem e já está tarde. O que acha de parar para dormir no próximo posto descanso?"
+        titlePrimaryButton="Fazer parada"
+        titleSecondaryButton="Lembrar na próxima parada"
+        onClickPrimaryButton={() => {}}
+        onClickSecondaryButton={() => setShowSleepModal(false)}
+      />
+    )
+  }
+
   function renderMap() {
     return userPosition && <CRMap nightMode zoom={16} place={userPosition} />
   }
@@ -181,9 +203,15 @@ export function Trip() {
   }
 
   function getTimerHooks(): TimerHook[] {
+    const isNight = isNightTime()
     return [
       {
-        callback: () => setShowRestModal(true),
+        callback: () => !isNight && setShowRestModal(true),
+        offset: 25 * 60, // 25 minutos
+        targetTime: 19800, // 5 horas e meia
+      },
+      {
+        callback: () => isNight && setShowSleepModal(true),
         offset: 25 * 60, // 25 minutos
         targetTime: 19800, // 5 horas e meia
       },
@@ -236,6 +264,7 @@ export function Trip() {
       {renderFloatingButton()}
       {showHelpModal && renderHelpModal()}
       {showRestModal && renderRestModal()}
+      {showSleepModal && renderSleepModal()}
       {openMenu && <div className="TripMenu">{renderMenu()}</div>}
       <div className={openTimerMenu ? 'TripTimer Open' : 'TripTimer'}>{renderTimer()}</div>
     </div>
