@@ -1,6 +1,6 @@
 import React from 'react'
 import './FinishedTrip.scss'
-import { Badge } from '../../generics'
+import { Badge } from '../../generics/Badge/Badge'
 import { BadgeProps } from '../../generics/Badge/Badge';
 import { TimeFormatter, DistanceFormatter } from '../../../formatters';
 import { RouteComponentProps, StaticContext } from 'react-router';
