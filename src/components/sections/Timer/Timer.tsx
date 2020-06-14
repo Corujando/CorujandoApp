@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Timer.scss'
 import { CRButton } from '../../generics/CRButton/CRButton'
+import { Fab } from '@material-ui/core'
 
 export interface TimerProps {}
 
@@ -52,9 +53,9 @@ export const Timer = () => {
           <h2 className="title">Duração da viagem</h2>
           <h2 className="time">{getCurrentTime()}</h2>
         </div>
-        <div className="circle-button">
+        <Fab className="circle-button">
           <CRButton text=" " className={isActive ? 'play active' : 'play'} onClick={toggle} />
-        </div>
+        </Fab>
       </div>
     </div>
   )
