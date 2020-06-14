@@ -11,6 +11,7 @@ interface CRPopUpProps {
   image?: string
   children?: JSX.Element
   faded?: boolean
+  className?: string
 }
 
 export function CRPopUp({
@@ -23,6 +24,7 @@ export function CRPopUp({
   image,
   children,
   faded,
+  className
 }: CRPopUpProps) {
   function renderPrimaryButton() {
     return (
@@ -53,7 +55,7 @@ export function CRPopUp({
   }
 
   return (
-    <div className={`model-popup ${faded ? 'faded' : ''}`}>
+    <div className={`model-popup ${faded ? 'faded' : ''} ${className || ''}`}>
       <div className="CRPopUp modal-popup_content">
         <div className="modal-popup_content_title_container">
           <div className="modal-popup_content_title">

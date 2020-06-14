@@ -3,7 +3,7 @@ import './Timer.scss'
 import { Fab } from '@material-ui/core'
 import { CRButton } from '../../generics/CRButton/CRButton'
 
-interface TimerHook {
+export interface TimerHook {
   offset: number
   callback: () => void
   targetTime: number
@@ -43,7 +43,7 @@ export function Timer({ initialTime, hooks }: TimerProps) {
   function runHooks() {
     if (hooks && hooks.length) {
       hooks.forEach(hook => {
-        if (time + hook.offset >= hook.targetTime) {
+        if (time + hook.offset === hook.targetTime) {
           hook.callback()
         }
       })

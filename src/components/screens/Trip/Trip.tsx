@@ -5,6 +5,7 @@ import CloseButton from '../../../assets/close_menu.png'
 import EmergencySymbol from '../../../assets/emergency_button.png'
 import EmergencySymbolLarge from '../../../assets/emergency_button_large.png'
 import jojoScared from '../../../assets/jojo-assustado.png'
+import jojoCoffee from '../../../assets/jojo-coffee.png'
 import MenuButton from '../../../assets/open_menu.png'
 import { Paths } from '../../../config/Paths'
 import { googleService } from '../../../services/googleService'
@@ -14,6 +15,7 @@ import { CRMap } from '../../generics/CRMap/CRMap'
 import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
 import { Timer } from '../../sections'
 import './Trip.scss'
+import { TimerHook } from '../../sections/Timer/Timer'
 
 interface TripParams {
   destiny: string
@@ -26,7 +28,7 @@ export function Trip() {
   const [openMenu, setOpenMenu] = useState(false)
   const [openTimerMenu, setOpenTimerMenu] = useState(false)
   const [showHelpModal, setShowHelpModal] = useState(false)
-  const [showRestModal, setShowRestModal] = useState(true)
+  const [showRestModal, setShowRestModal] = useState(false)
   const [userPosition, setUserPosition] = useState<UserPosition>(null)
 
   useEffect(() => {
@@ -103,7 +105,19 @@ export function Trip() {
   }
 
   function renderRestModal() {
-    return null
+    return (
+      <CRPopUp
+        faded
+        className="PausaDescanso"
+        image={jojoCoffee}
+        title="Pausa pro descanso?"
+        subTitle="Você está perto de completar 5h30 de viagem e estamos chegando em um ponto de descanso, que tal uma pausa?"
+        titlePrimaryButton="Fazer parada"
+        titleSecondaryButton="Lembrar na próxima parada"
+        onClickPrimaryButton={() => {}}
+        onClickSecondaryButton={() => setShowRestModal(false)}
+      />
+    )
   }
 
   function renderMap() {
@@ -166,6 +180,16 @@ export function Trip() {
     )
   }
 
+  function getTimerHooks(): TimerHook[] {
+    return [
+      {
+        callback: () => setShowRestModal(true),
+        offset: 25 * 60, // 25 minutos
+        targetTime: 19800, // 5 horas e meia
+      },
+    ]
+  }
+
   function renderTimer(): JSX.Element {
     return (
       <>
@@ -175,7 +199,7 @@ export function Trip() {
           onClick={handleTripTimerButtonClick}
         />
         <div className="TripTimerData">
-          <Timer />
+          <Timer initialTime={18290} hooks={getTimerHooks()} />
           {openTimerMenu && renderTimerMenuInfo()}
         </div>
       </>
