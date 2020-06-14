@@ -51,6 +51,8 @@ export function CRMap({ center, zoom, place }: CRMapProps) {
     map = new google.maps.Map(document.getElementById('map')!!, {
       center: center || defaultCenter,
       zoom: zoom || 15,
+      streetViewControl: false,
+      zoomControl: false,
     })
 
     createMarker()

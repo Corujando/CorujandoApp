@@ -1,10 +1,15 @@
+import { Fab } from '@material-ui/core'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import CloseButton from '../../../assets/close_menu.png'
 import EmergencySymbol from '../../../assets/emergency_button.png'
+import EmergencySymbolLarge from '../../../assets/emergency_button_large.png'
+import jojoScared from '../../../assets/jojo-assustado.png'
 import MenuButton from '../../../assets/open_menu.png'
 import { CRButton } from '../../generics/CRButton/CRButton'
 import { CRMap } from '../../generics/CRMap/CRMap'
+import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
+
 import './Trip.scss'
 import { Timer } from '../../sections'
 
@@ -16,6 +21,7 @@ export function Trip() {
   const { destiny } = useParams<TripParams>()
 
   const [openMenu, setOpenMenu] = useState(false)
+  const [showHelpModal, setShowHelpModal] = useState(false)
 
   function handleCloseMenuClick() {
     setOpenMenu(false)
@@ -31,7 +37,30 @@ export function Trip() {
 
   function handleAchievementsClick() {}
 
-  function renderMap(): JSX.Element {
+  function renderFloatingButton() {
+    return (
+      <Fab className="FloatingButton" onClick={() => setShowHelpModal(true)}>
+        <img src={EmergencySymbolLarge} alt="Botão de Emergência" />
+      </Fab>
+    )
+  }
+
+  function renderHelpModal() {
+    return (
+      <CRPopUp
+        faded={true}
+        image={jojoScared}
+        title="Precisa de ajuda?"
+        subTitle="Se sentindo mal?"
+        titlePrimaryButton="Rota para unidade de atendimento mais próxima"
+        titleSecondaryButton="Fechar"
+        onClickPrimaryButton={() => {}}
+        onClickSecondaryButton={() => setShowHelpModal(false)}
+      />
+    )
+  }
+
+  function renderMap() {
     return <CRMap zoom={12} place={new google.maps.LatLng({ lat: -30.056, lng: -51.1622 })} />
   }
 
@@ -106,6 +135,8 @@ export function Trip() {
     <div className="Trip">
       <div className="TripHeader">{renderHeader()}</div>
       <div className="TripMap">{renderMap()}</div>
+      {renderFloatingButton()}
+      {showHelpModal && renderHelpModal()}
       {openMenu && <div className="TripMenu">{renderMenu()}</div>}
       <div className="TripTimer">{renderTimer()}</div>
     </div>
