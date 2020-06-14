@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { CRMap, CRButton } from '../../generics'
-import { MarkerComponent } from '../../generics/map/CRMap'
-import { LocalShipping } from '@material-ui/icons'
 import MenuButton from '../../../assets/open_menu.png'
 import CloseButton from '../../../assets/close_menu.png'
 import EmergencySymbol from '../../../assets/emergency_button.png'
@@ -37,19 +35,7 @@ export function Trip(props: TripProps) {
 
   function renderMap() {
     return (
-      <CRMap
-        zoom={15}
-        places={[{ lat: -30.056, lng: -51.1622 }]}
-        marker={{
-          lat: -30.056,
-          lng: -51.1622,
-          htmlColor: 'black',
-          style: {
-            fontSize: '50',
-          },
-        }}
-        MarkerComponent={LocalShipping as MarkerComponent}
-      />
+      <CRMap zoom={12} place={new google.maps.LatLng({ lat: -30.056, lng: -51.1622 })} />
     )
   }
 
