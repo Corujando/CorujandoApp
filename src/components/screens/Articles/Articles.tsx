@@ -1,5 +1,5 @@
 import React from 'react'
-import './Article.scss'
+import './Articles.scss'
 import logo from '../../../assets/jojo-blue-horizontal.png'
 import { useParams } from 'react-router'
 
@@ -17,7 +17,7 @@ const mock = {
 }
 
 
-export function Article() {
+export function Articles() {
 
     // Load from firebase
     const { id } = useParams<ArticleProps>()
