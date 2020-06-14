@@ -118,25 +118,6 @@
         margin-bottom: 25px;
       }
     }
-    .TripHelp {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      width: 80%;
-      margin-left: 10%;
-      margin-right: 10%;
-      border: none;
-      border-radius: 10px;
-      padding: 10px;
-      background-color: white;
-      outline: none;
-      .TripHelpText {
-        font-family: 'Montserrat Alternates', sans-serif;
-        margin-left: 10px;
-        font-size: 16px;
-      }
-    }
   }
 
   .TripTimer {
@@ -179,6 +160,16 @@
           font-weight: bold;
         }
       }
+      .FinishTripButton {
+        border: 2px solid #274798;
+        color: #274798;
+        font-weight: bold;
+        margin-right: 10%;
+        margin-left: 10%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 80%;
+      }
     }
 
     .TripTimerOpenButton {
@@ -193,11 +184,36 @@
     }
 
     &.Open {
-      height: 400px;
+      height: 425px;
 
       .TripTimerOpenButton {
-        height: 400px;
+        height: 425px;
       }
+    }
+
+    .TripHelp {
+      border: 2px solid #FA7C54;
+    }
+  }
+
+  .TripHelp {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: none;
+    border-radius: 10px;
+    padding: 5x;
+    background-color: white;
+    outline: none;
+    .TripHelpText {
+      font-family: 'Montserrat Alternates', sans-serif;
+      margin-left: 10px;
+      font-size: 16px;
     }
   }
 }

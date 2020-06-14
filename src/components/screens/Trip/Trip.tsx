@@ -30,10 +30,14 @@ export function Trip() {
 
   function handleOpenMenuClick() {
     setOpenMenu(true)
+    setOpenTimerMenu(false)
   }
 
   function handleTripTimerButtonClick() {
     setOpenTimerMenu(!openTimerMenu)
+    if (!openTimerMenu) {
+      setOpenMenu(false)
+    }
   }
 
   function handleHealthClick() {}
@@ -42,9 +46,19 @@ export function Trip() {
 
   function handleAchievementsClick() {}
 
+  function handleStopButtonClick() {}
+
+  function handleFinishTripButtonClick() {}
+
+  function handleHelperClick() {
+    setShowHelpModal(true)
+    setOpenTimerMenu(false)
+    setOpenMenu(false)
+  }
+
   function renderHelperButton(): JSX.Element {
     return (
-      <button type="submit" className="TripHelp" onClick={handleHistoryClick}>
+      <button type="submit" className="TripHelp" onClick={handleHelperClick}>
         <img src={EmergencySymbol} alt="Botão de Emergência" />
         <p className="TripHelpText">Preciso de Ajuda</p>
       </button>
@@ -53,7 +67,7 @@ export function Trip() {
 
   function renderFloatingButton() {
     return (
-      <Fab className="FloatingButton" onClick={() => setShowHelpModal(true)}>
+      <Fab className="FloatingButton" onClick={handleHelperClick}>
         <img src={EmergencySymbolLarge} alt="Botão de Emergência" />
       </Fab>
     )
@@ -125,10 +139,10 @@ export function Trip() {
         </div>
         <div className="TripBar" />
         <div className="TripOptions">
-          <CRButton className="TripOptionButton" onClick={handleHealthClick}>
+          <CRButton className="TripOptionButton" onClick={handleStopButtonClick}>
             Fazer parada
           </CRButton>
-          <CRButton className="TripOptionButton" onClick={handleHistoryClick}>
+          <CRButton className="TripOptionButton" onClick={handleFinishTripButtonClick}>
             Finalizar viagem
           </CRButton>
         </div>
@@ -140,7 +154,11 @@ export function Trip() {
   function renderTimer(): JSX.Element {
     return (
       <>
-        <button className="TripTimerOpenButton" onClick={handleTripTimerButtonClick} />
+        <button
+          type="button"
+          className="TripTimerOpenButton"
+          onClick={handleTripTimerButtonClick}
+        />
         <div className="TripTimerData">
           <Timer />
           {openTimerMenu && renderTimerMenuInfo()}
@@ -164,7 +182,7 @@ export function Trip() {
             <p>1.791 KM</p>
           </div>
         </div>
-        <CRButton onClick={() => {}}>Finalizar viagem</CRButton>
+        <CRButton className="FinishTripButton" onClick={() => { console.log('teste')}}>Finalizar viagem</CRButton>
         {renderHelperButton()}
       </>
     )
