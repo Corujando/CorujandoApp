@@ -17,7 +17,7 @@ class GoogleService {
       origin: map.getCenter(),
       travelMode: google.maps.TravelMode.DRIVING,
       drivingOptions: {
-        departureTime: new Date(),
+        departureTime: new Date(2020, 6, 15),
       },
     }
     const service = new google.maps.DirectionsService()

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import './FinishedTrip.scss'
-import { Badge } from '../../generics/Badge/Badge'
-import { BadgeProps } from '../../generics/Badge/Badge'
-import { TimeFormatter, DistanceFormatter } from '../../../formatters'
-import { RouteComponentProps, StaticContext } from 'react-router'
 import { Link } from 'react-router-dom'
+import { DistanceFormatter, TimeFormatter } from '../../../formatters'
 import { Badge as BadgeModel } from '../../../model/badge'
-import { UserService } from '../../../services/userService'
 import { BadgeService } from '../../../services/badge.service'
+import { UserService } from '../../../services/userService'
+import { Badge } from '../../generics/Badge/Badge'
+import './FinishedTrip.scss'
 
 export interface FinishedTripProps {
   badges: BadgeModel[]
@@ -17,8 +15,8 @@ export interface FinishedTripProps {
 
 export const FinishedTrip = () => {
   const [badges, setBadges] = useState([] as BadgeModel[])
-  const [totalDistance, setTotalDistance] = useState(2062)
-  const [time, setTime] = useState(18910)
+  const [totalDistance] = useState(2062)
+  const [time] = useState(18910)
 
   useEffect(() => {
     const userService = new UserService()
@@ -27,17 +25,21 @@ export const FinishedTrip = () => {
     userService.getUsersBadges().then(badgeIds => {
       if (badgeIds && badgeIds.length > 0) {
         badgeService.getAllBadges().then(docs => {
-          const badges = docs as BadgeModel[]
-
-          setBadges(badges.filter(badge => badgeIds.includes(badge.id)))
+          const badgesDoc = docs as BadgeModel[]
+          setBadges(badgesDoc.filter(badge => badgeIds.includes(badge.id)))
         })
       }
     })
   }, [])
 
   const renderBadges = () => {
-    return badges.map((badge: BadgeModel) => (
-      <Badge additionalClass="badge-unlocked" imageSource={badge.imageUrl} title={badge.title} />
+    return badges.map((badge: BadgeModel, index: number) => (
+      <Badge
+        key={index}
+        additionalClass="badge-unlocked"
+        imageSource={badge.imageUrl}
+        title={badge.title}
+      />
     ))
   }
 

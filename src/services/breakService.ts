@@ -1,12 +1,12 @@
-import { BaseService } from './base.service'
-import { Status } from '../model/trip'
 import * as firebase from 'firebase'
 import { Break } from '../model/break'
+import { Status } from '../model/trip'
+import { BaseService } from './base.service'
 
 export class BreakService extends BaseService {
   protected PATH: string = 'break'
 
-  public async finishInProgressBreak(tripId: string) {
+  public async finishInProgressBreak(tripId: string): Promise<void> {
     const breakItem = await this.firestore
       .collection(this.PATH)
       .where('tripId', '==', tripId)
@@ -22,6 +22,8 @@ export class BreakService extends BaseService {
         { merge: true },
       )
     }
+
+    return Promise.resolve()
   }
 
   public async saveNewBreak(tripId: string, location: google.maps.LatLng) {
@@ -37,14 +39,16 @@ export class BreakService extends BaseService {
   public async getWhereEqualToTripId(tripId: string): Promise<Break[]> {
     const queryResult = await this.getWhereEqualTo('tripId', tripId)
 
+    // eslint-disable-next-line
     const docs = queryResult.docs
 
-    const breaks = docs.map(doc => (
-      {
-        ...doc.data(),
-        id: doc.id
-      } as Break
-    ))
+    const breaks = docs.map(
+      doc =>
+        ({
+          ...doc.data(),
+          id: doc.id,
+        } as Break),
+    )
 
     return breaks
   }

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import './Timer.scss'
 import { Fab } from '@material-ui/core'
+import React, { useEffect, useState } from 'react'
 import { CRButton } from '../../generics/CRButton/CRButton'
+import './Timer.scss'
 
 export interface TimerHook {
   offset: number
@@ -30,17 +30,14 @@ export function Timer({ initialTime, hooks, onPlayClick, onPauseClick }: TimerPr
     }
   }
 
-  function reset() {
-    setTime(0)
-    setIsActive(false)
-  }
-
   useEffect(() => {
     let interval: any
     runHooks()
     if (isActive) {
       interval = setInterval(() => {
-        setTime(seconds => seconds + 1)
+        let timeAux = 60 * 60
+        if (time >= 18000) timeAux = 900
+        setTime(seconds => seconds + timeAux)
       }, 1000)
     } else if (!isActive && time !== 0) {
       clearInterval(interval)

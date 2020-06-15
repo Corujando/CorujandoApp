@@ -1,6 +1,5 @@
 import { User } from '../model/user'
 import { BaseService } from './base.service'
-let loggedUser: string | undefined
 
 export class UserService extends BaseService {
   PATH = 'user'
@@ -29,12 +28,12 @@ export class UserService extends BaseService {
 
   async getUsersBadges() {
     const result = await this.getDocumentFromId(this.getLoggedUserId()!!)
-    const response = result.data();
+    const response = result.data()
 
     if (response) {
-      return response.badges;
+      return response.badges
     }
-    return [];
+    return []
   }
 
   getLoggedUserId(): string | null {

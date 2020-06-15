@@ -1,31 +1,28 @@
-import React, { useState, useEffect } from 'react'
-import * as firebase from "firebase"
-import CardHeader from "@material-ui/core/CardHeader"
-import CardContent from "@material-ui/core/CardContent"
-import Avatar from "@material-ui/core/Avatar"
-import Typography from "@material-ui/core/Typography"
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-import { ExpansionPanelSummary, ExpansionPanel } from "@material-ui/core"
-import AchievementMock from '../../../assets/achievement_coffee.png'
-import { Trip } from "../../../model/trip"
-import { Break } from '../../../model/break'
+import { ExpansionPanel, ExpansionPanelSummary } from '@material-ui/core'
+import Avatar from '@material-ui/core/Avatar'
+import CardContent from '@material-ui/core/CardContent'
+import CardHeader from '@material-ui/core/CardHeader'
+import Typography from '@material-ui/core/Typography'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import React, { useEffect, useState } from 'react'
 import { TimeFormatter } from '../../../formatters/TimeFormatter'
+import { Badge } from '../../../model/badge'
+import { Break } from '../../../model/break'
+import { Trip } from '../../../model/trip'
+import { BadgeService } from '../../../services/badge.service'
 import { BreakService } from '../../../services/breakService'
 import { UserService } from '../../../services/userService'
-import { Badge } from '../../../model/badge'
-import { BadgeService } from '../../../services/badge.service'
 import './CRTripCard.scss'
 
 export function CRTripCard(props: Trip) {
-
   const [breaks, setBreaks] = useState([] as Break[])
   const [badges, setBadges] = useState([] as Badge[])
 
   useEffect(() => {
     const breakService = new BreakService()
-    if(props.id) {
-      breakService.getWhereEqualToTripId(props.id).then(breaks => {
-        setBreaks(breaks)
+    if (props.id) {
+      breakService.getWhereEqualToTripId(props.id).then(breaksParam => {
+        setBreaks(breaksParam)
       })
     }
   }, [])
@@ -37,9 +34,8 @@ export function CRTripCard(props: Trip) {
     userService.getUsersBadges().then(badgeIds => {
       if (badgeIds && badgeIds.length > 0) {
         badgeService.getAllBadges().then(docs => {
-          const badges = docs as Badge[]
-
-          setBadges(badges.filter(badge => badgeIds.includes(badge.id)))
+          const badgesDoc = docs as Badge[]
+          setBadges(badgesDoc.filter(badge => badgeIds.includes(badge.id)))
         })
       }
     })
@@ -55,6 +51,7 @@ export function CRTripCard(props: Trip) {
           subheader={
             <>
               <Typography variant="body2" color="textSecondary" component="p">
+                {/* eslint-disable-next-line */}
                 {TimeFormatter.getFormattedDateFromTimestamp(props.initialTime) +
                   ' - ' +
                   TimeFormatter.getFormattedDateFromTimestamp(props.finalTime)}
@@ -89,8 +86,8 @@ export function CRTripCard(props: Trip) {
               </Typography>
               <br />
               <div className="TripCardBadges">
-                {badges.map(badge => (
-                  <Avatar alt="Conquista" src={badge.imageUrl} />
+                {badges.map((badge, id) => (
+                  <Avatar alt="Conquista" key={id} src={badge.imageUrl} />
                 ))}
               </div>
             </>

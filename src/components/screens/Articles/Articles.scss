@@ -1,50 +1,50 @@
 .ArticleScreen {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 100vh;
+
+  .Image {
+    width: 100%;
+    height: 300px;
+  }
+
+  .Title {
+    color: #274798;
+    font-family: Montserrat Alternates;
+    font-size: 30px;
+    margin: 20px;
+    margin-bottom: -15px;
+  }
+
+  .SubTitle {
+    color: #56585a;
+    font-size: 12px;
+    margin-left: 10px;
+    margin: 25px;
+
+    .Link {
+      color: #56585a;
+    }
+  }
+
+  .Text {
+    color: #56585a;
+    font-size: 12px;
+    margin-left: 10px;
+    margin: 25px;
+    margin-top: 0px;
+  }
+
+  .Icon {
     display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    height: 100vh;
+    justify-content: center;
+    align-items: center;
 
-    .Image {
-        width: 100%;
-        height: 300px;
+    .Logo {
+      width: 100px;
+      height: 30px;
+      margin: 5px;
     }
-
-    .Title {
-        color: #274798;
-        font-family: Montserrat Alternates;
-        font-size: 30px;
-        margin: 20px;
-        margin-bottom: -15px;
-    }
-
-    .SubTitle {
-        color: #56585A;
-        font-size: 12px;
-        margin-left: 10px;
-        margin: 25px;
-
-        .Link {
-            color: #56585A;
-        }
-    }
-
-    .Text {
-        color: #56585A;
-        font-size: 12px;
-        margin-left: 10px;
-        margin: 25px;
-        margin-top: 0px;
-    }
-
-    .Icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .Logo {
-            width: 100px;
-            height: 30px;
-            margin: 5px;
-        }
-    }
+  }
 }

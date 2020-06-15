@@ -3,7 +3,6 @@ import { Coords } from 'google-map-react'
 export type UserPosition = google.maps.LatLng | null
 class NavigationService {
   private position: Position | undefined
-  private destiny: UserPosition | undefined
 
   public saveCurrentLocation(callBack: (position: UserPosition) => void) {
     navigator.geolocation.getCurrentPosition(position => {

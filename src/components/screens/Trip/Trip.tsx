@@ -21,8 +21,10 @@ import { CRMap } from '../../generics/CRMap/CRMap'
 import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
 import { Timer } from '../../sections'
 import { TimerHook } from '../../sections/Timer/Timer'
+
 import './Trip.scss'
-const NIGHT_TIME = 22
+
+const NIGHT_TIME = 20
 
 function isNightTime() {
   return getHour() >= NIGHT_TIME || getHour() < 6
@@ -61,8 +63,7 @@ export function Trip() {
   }, [])
 
   useEffect(() => {
-    let interval: any
-    interval = setInterval(() => {
+    const interval = setInterval(() => {
       if (getHour() !== hour) setHour(getHour())
     }, 10000)
     return () => clearInterval(interval)
@@ -78,7 +79,7 @@ export function Trip() {
       initialLocation: new firebase.firestore.GeoPoint(location!!.lat(), location!!.lng()),
       status: Status.PAUSED,
       userId: new UserService().getLoggedUserId()!!,
-      destiny: destiny,
+      destiny,
     }
 
     tripId = (await tripService.add(trip)) as string
@@ -253,12 +254,12 @@ export function Trip() {
     return [
       {
         callback: () => !isNight && setShowRestModal(true),
-        offset: 25 * 60, // 25 minutos
+        offset: 15 * 60, // 25 minutos
         targetTime: 19800, // 5 horas e meia
       },
       {
         callback: () => isNight && setShowSleepModal(true),
-        offset: 25 * 60, // 25 minutos
+        offset: 15 * 60, // 25 minutos
         targetTime: 19800, // 5 horas e meia
       },
     ]
@@ -269,12 +270,12 @@ export function Trip() {
     breakService.finishInProgressBreak(tripId!!)
   }
 
-  async function onPauseClicked(time: number) {
+  async function onPauseClicked(timeParam: number) {
     tripService.setStatusPaused(tripId!!)
     navigationService.saveCurrentLocation(location => {
       breakService.saveNewBreak(tripId!!, location!!)
     })
-    history.push(Paths.PAUSED_TRIP + '/' + time)
+    history.push(`${Paths.PAUSED_TRIP}/${timeParam}`)
   }
 
   function renderTimer(): JSX.Element {

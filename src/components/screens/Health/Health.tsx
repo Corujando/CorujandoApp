@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import './Health.scss'
-import { CRFooter } from '../../generics/CRFooter/CRFooter'
 import { Link } from 'react-router-dom'
+import { Article } from '../../../model/article'
+import { Badge } from '../../../model/badge'
+import { ArticleService } from '../../../services/article.service'
+import { BadgeService } from '../../../services/badge.service'
 import { Card } from '../../generics/Card/Card'
 import { CardItem } from '../../generics/CardItem/CardItem'
-import { ArticleService } from '../../../services/article.service'
-import { Article } from '../../../model/article'
-import { BadgeService } from '../../../services/badge.service'
-import { Badge } from '../../../model/badge'
+import { CRFooter } from '../../generics/CRFooter/CRFooter'
 import { CRPopUp } from '../../generics/CRPopUp/CRPopUp'
+import './Health.scss'
 
 const hasSeenHealth = localStorage.getItem('hasSeenHealth')
 
@@ -24,8 +24,8 @@ export function Health() {
   }, [])
 
   async function loadBadges() {
-    const badges = await badgeService.getAllBadges()
-    setBadges(badges!!)
+    const badgesFromDB = await badgeService.getAllBadges()
+    setBadges(badgesFromDB!!)
   }
 
   async function handleArticle() {

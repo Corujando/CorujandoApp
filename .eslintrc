@@ -94,6 +94,8 @@
         "ignoreReadBeforeAssign": false
       }
     ],
-    "class-methods-use-this": "off"
+    "react/no-array-index-key": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "react-hooks/exhaustive-deps": "off"
   }
 }

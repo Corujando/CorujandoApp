@@ -24,7 +24,7 @@ export function CRPopUp({
   image,
   children,
   faded,
-  className
+  className,
 }: CRPopUpProps) {
   function renderPrimaryButton() {
     return (

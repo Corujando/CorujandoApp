@@ -1,6 +1,6 @@
-import { Trip, Status } from '../model/trip'
-import { BaseService } from './base.service'
 import * as firebase from 'firebase'
+import { Status, Trip } from '../model/trip'
+import { BaseService } from './base.service'
 
 export class TripService extends BaseService {
   PATH = 'trip'
@@ -30,14 +30,16 @@ export class TripService extends BaseService {
   async getWhereEqualToUserId(userId: string): Promise<Trip[]> {
     const queryResult = await this.getWhereEqualTo('userId', userId)
 
+    // eslint-disable-next-line
     const docs = queryResult.docs
 
-    const trips = docs.map(doc => (
-      {
-        ...doc.data(),
-        id: doc.id
-      } as Trip
-    ))
+    const trips = docs.map(
+      doc =>
+        ({
+          ...doc.data(),
+          id: doc.id,
+        } as Trip),
+    )
 
     return trips
   }

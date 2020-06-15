@@ -12,7 +12,7 @@ export class TimeFormatter {
   }
 
   static formatNumber = (number: number) => {
-    return ('0' + number).slice(-2)
+    return `0${number}`.slice(-2)
   }
 
   private static toStringZ = (value: number): string => {
@@ -20,22 +20,20 @@ export class TimeFormatter {
   }
 
   private static getFormattedDate = (date: Date): string => {
-    return (
-      TimeFormatter.toStringZ(date.getDate()) +
-      '/' +
-      TimeFormatter.toStringZ(date.getMonth()) +
-      '/' +
-      TimeFormatter.toStringZ(date.getFullYear())
-    )
+    return `${TimeFormatter.toStringZ(date.getDate())}/${TimeFormatter.toStringZ(
+      date.getMonth(),
+    )}/${TimeFormatter.toStringZ(date.getFullYear())}`
   }
 
   static getFormattedDateFromTimestamp = (timestamp?: firebase.firestore.Timestamp): string => {
-    return timestamp ? TimeFormatter.getFormattedDate(timestamp.toDate()) : "--/--/--"
+    return timestamp ? TimeFormatter.getFormattedDate(timestamp.toDate()) : '--/--/--'
   }
 
   private static getFormattedTime(date: Date): string {
-    return TimeFormatter.toStringZ(date.getHours()) + 'h'
-    + TimeFormatter.toStringZ(date.getMinutes())
+    return (
+      // eslint-disable-next-line
+      TimeFormatter.toStringZ(date.getHours()) + 'h' + TimeFormatter.toStringZ(date.getMinutes())
+    )
   }
 
   static getFormatedTimeFromTimestamp = (timestamp?: firebase.firestore.Timestamp): string => {
@@ -44,6 +42,7 @@ export class TimeFormatter {
 
   static getFormatedFullDate = (timestamp?: firebase.firestore.Timestamp): string => {
     return (
+      // eslint-disable-next-line
       TimeFormatter.getFormattedDateFromTimestamp(timestamp) +
       ' às ' +
       TimeFormatter.getFormatedTimeFromTimestamp(timestamp)

@@ -1,6 +1,8 @@
 import * as firebase from 'firebase/app'
 import firebaseConfig from '../config/FirebaseConfig'
+// eslint-disable-next-line
 import 'firebase/auth'
+// eslint-disable-next-line
 import 'firebase/analytics'
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)

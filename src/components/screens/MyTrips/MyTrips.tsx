@@ -15,14 +15,14 @@ interface Achievement {
 }
 
 export interface TripData {
-  destiny: string,
-  init: string,
-  init_hour: string,
-  end: string,
-  end_hour: string,
-  duration: string,
-  stops: TripStop[],
-  achievements: Achievement[],
+  destiny: string
+  init: string
+  init_hour: string
+  end: string
+  end_hour: string
+  duration: string
+  stops: TripStop[]
+  achievements: Achievement[]
 }
 
 export function MyTrips() {
@@ -32,8 +32,8 @@ export function MyTrips() {
     const tripService = new TripService()
     const userId = new UserService().getLoggedUserId()
     if (userId) {
-      tripService.getWhereEqualToUserId(userId).then(trips => {
-        setTrips(trips)
+      tripService.getWhereEqualToUserId(userId).then(tripsParam => {
+        setTrips(tripsParam)
       })
     }
   }, [])
